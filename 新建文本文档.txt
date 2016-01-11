@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 jessica
 19890418
 maomao
-=======
-fsfdsfsfsdfs
-dfgtg fg 
->>>>>>> origin/master
+
+
