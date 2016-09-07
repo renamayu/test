@@ -20,7 +20,7 @@ Zepto(function ($) {
 				console.log(msg);
                 //document.write(msg);
                 //document.close()
-				window.location.href = msg;
+				// window.location.href = msg;
             }, error: function (XMLHttpRequest, textStatus, errorThrown) {
                 if (goTime < 30) {
                  ajaxGoNext(nextUrl1)
