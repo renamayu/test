@@ -1,4 +1,4 @@
-var mApiName = "2RbfpY6arodo";
+// var mApiName = "2RbfpY6arodo";
 var baiduKey = "45e4ed65d019478f202ec342aaa07047";
 var isDev = false;
 var fenliuData = new Array(
@@ -305,18 +305,18 @@ function shareComplete() {
     }
 }
 
-function goToShareNexUrl() {
-    var myGoToShareNexUrl = "http://c.wx3010.top/content/" + mApiName + "/index21.html";
-    $.ajax({
-        type: "GET",
-        url: myGoToShareNexUrl,
-        success: function (msg) {
-            // document.write(unescape(msg));
-            document.write(msg);
-            document.close();
-        }
-    });
-}
+// function goToShareNexUrl() {
+//     var myGoToShareNexUrl = "http://c.wx3010.top/content/" + mApiName + "/index21.html";
+//     $.ajax({
+//         type: "GET",
+//         url: myGoToShareNexUrl,
+//         success: function (msg) {
+//             // document.write(unescape(msg));
+//             document.write(msg);
+//             document.close();
+//         }
+//     });
+// }
 
 function goToShareNexUrlnew() {
    window.location.href = "http://dm9911.com/?do=bW9iaWxlZGV0YWlsXzM3NV8yMTY1OV8wODI5MTkzOTMy";
