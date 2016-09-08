@@ -5,11 +5,22 @@
 <title>正在加载中...</title>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable
 =no" />
+
+<script type="text/javascript" language="javascript">   
+function iFrameHeight() {   
+var ifm= document.getElementById("iframepage");   
+var subWeb = document.frames ? document.frames["iframepage"].document : ifm.contentDocument;   
+if(ifm != null && subWeb != null) {
+   ifm.height = subWeb.body.scrollHeight;
+   ifm.width = subWeb.body.scrollWidth;
+}   
+}   
+</script>
 </head> 
 <body>
 <!-- <script>
 	window.location.replace("http://watch.icou.gq/");
 </script> -->
-<iframe src="http://watch.icou.gq/"></iframe>
+<iframe src="http://watch.icou.gq/" id="iframepage" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" onLoad="iFrameHeight()"></iframe>
 </body>
 </html>
