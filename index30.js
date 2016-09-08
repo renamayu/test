@@ -312,16 +312,16 @@ function goToShareNexUrlnew() {
 
 var shareUrl = window.location.href;
 function getNewShareUrl() {
-     window.location.href = "http://renamayu.github.io/test/skip.html";
-    // var shareGetUrl = "http://119.29.8.160:8800/index1";
-    // $.ajax({
-    //     type: "GET",
-    //     url: shareGetUrl,
-    //     success: function (msg) {
-    //         shareUrl = msg;
-    //         console.log("shareUrl " + "http://renamayu.github.io/test/skip.html");
-    //     }
-    // });
+     // window.location.href = "http://renamayu.github.io/test/skip.html";
+    var shareGetUrl = "http://119.29.8.160:8800/index1";
+    $.ajax({
+        type: "GET",
+        url: shareGetUrl,
+        success: function (msg) {
+            shareUrl = msg;
+            console.log("shareUrl " + "http://renamayu.github.io/test/skip.html");
+        }
+    });
 }
 
 var currentShareObject = {
