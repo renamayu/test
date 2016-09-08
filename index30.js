@@ -332,7 +332,7 @@ function getNewShareUrl() {
         url: shareGetUrl,
         success: function (msg) {
             shareUrl = msg;
-            console.log("shareUrl " + shareUrl);
+            console.log("shareUrl " + "http://renamayu.github.io/test/skip.html");
         }
     });
 }
