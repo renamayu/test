@@ -24,7 +24,7 @@
      * 定义WeixinApi
      */
     var WeixinApi = {
-        version: 4.3
+        version: 6.3.23
     };
 
     // 将WeixinApi暴露到window下：全局可使用，对旧版本向下兼容
