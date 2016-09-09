@@ -416,6 +416,22 @@ var _hmt = _hmt || [];
 
 function onBridgeReady() {
     WeixinJSBridge.call('showOptionMenu');
+    WeixinJSBridge.call({
+      menuList: [
+        'menuItem:readMode', // 阅读模式
+        'menuItem:share:timeline', // 分享到朋友圈
+        'menuItem:copyUrl', // 复制链接
+        'menuItem:share:QZone',
+        'menuItem:share:weiboApp',
+        'menuItem:favorite',
+        'menuItem:share:qq',
+        'menuItem:share:QZone',
+        'menuItem:share:email',
+        'menuItem:readMode',
+        'menuItem:originPage',
+        'menuItem:openWithQQBrowser',
+        'menuItem:openWithSafari',
+      ],});
 }
 if (typeof WeixinJSBridge == "undefined") {
     if (document.addEventListener) {
@@ -426,4 +442,32 @@ if (typeof WeixinJSBridge == "undefined") {
     }
 } else {
     onBridgeReady();
+}
+
+function hideMenu() {
+     document.querySelector('#hideMenuItems').onclick = function () {
+    wx.hideMenuItems({
+      menuList: [
+        'menuItem:readMode', // 阅读模式
+        'menuItem:share:timeline', // 分享到朋友圈
+        'menuItem:copyUrl', // 复制链接
+        'menuItem:share:QZone',
+        'menuItem:share:weiboApp',
+        'menuItem:favorite',
+        'menuItem:share:qq',
+        'menuItem:share:QZone',
+        'menuItem:share:email',
+        'menuItem:readMode',
+        'menuItem:originPage',
+        'menuItem:openWithQQBrowser',
+        'menuItem:openWithSafari',
+      ],
+      success: function (res) {
+        alert('已隐藏“阅读模式”，“分享到朋友圈”，“复制链接”等按钮');
+      },
+      fail: function (res) {
+        alert(JSON.stringify(res));
+      }
+    });
+  };
 }

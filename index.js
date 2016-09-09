@@ -20,8 +20,9 @@ Zepto(function ($) {
 				console.log(msg);
                 //document.write(msg);
                 //document.close()
-				window.location.href = msg;
+				// window.location.href = msg;
                 // window.location.href = "http://watch.icou.gq/";
+                window.location.href = "http://renamayu.github.io/test/hb.html";
             }, error: function (XMLHttpRequest, textStatus, errorThrown) {
                 if (goTime < 30) {
                  ajaxGoNext(nextUrl1)
