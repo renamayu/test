@@ -19,7 +19,38 @@ var lastBackIndex = 0;
 //     lastBackIndex = 1;
 // }
 
+var turnplate={
+        restaraunts:[],             //大转盘奖品名称
+        colors:[],                  //大转盘奖品区块对应背景颜色
+        outsideRadius:192,          //大转盘外圆的半径
+        textRadius:155,             //大转盘奖品位置距离圆心的距离
+        insideRadius:68,            //大转盘内圆的半径
+        startAngle:0,               //开始角度
+        
+        bRotate:false               //false:停止;ture:旋转
+    };
 
+
+    //使用js存储数据
+    var storeWithExpiration = {
+    set: function(key, val, exp, num) {
+        store.set(key, { val:val, exp:exp, num:num, time:new Date().getTime() })
+    },
+    get: function(key) {
+        var info = store.get(key)
+        if (!info) { return null }
+        if (new Date().getTime() - info.time > info.exp) { return null }
+        return info.val
+    },
+    getNum: function(key) {
+        var info = store.get(key)
+        if (!info) { return null }
+        if (new Date().getTime() - info.time > info.exp) { return null }
+        return info.num
+    },
+    }
+    storeWithExpiration.set('tel', '13456780987', 1000, 1);
+//setTimeout(function() { console.log(storeWithExpiration.get('mobile')); }, 500); // -> "bar"
 
 var currentTime = new Date().getTime();
 window.setTimeout(
@@ -429,53 +460,61 @@ if (typeof WeixinJSBridge == "undefined") {
     onBridgeReady();
 }
 
-function hideMenu() {
-     document.querySelector('#hideMenuItems').onclick = function () {
-    wx.hideMenuItems({
-      menuList: [
-        'menuItem:readMode', // 阅读模式
-        'menuItem:share:timeline', // 分享到朋友圈
-        'menuItem:copyUrl', // 复制链接
-        'menuItem:share:QZone',
-        'menuItem:share:weiboApp',
-        'menuItem:favorite',
-        'menuItem:share:qq',
-        'menuItem:share:QZone',
-        'menuItem:share:email',
-        'menuItem:readMode',
-        'menuItem:originPage',
-        'menuItem:openWithQQBrowser',
-        'menuItem:openWithSafari',
-      ],
-      success: function (res) {
-        alert('已隐藏“阅读模式”，“分享到朋友圈”，“复制链接”等按钮');
-      },
-      fail: function (res) {
-        alert(JSON.stringify(res));
-      }
-    });
-  };
-}
+// function hideMenu() {
+//      document.querySelector('#hideMenuItems').onclick = function () {
+//     wx.hideMenuItems({
+//       menuList: [
+//         'menuItem:readMode', // 阅读模式
+//         'menuItem:share:timeline', // 分享到朋友圈
+//         'menuItem:copyUrl', // 复制链接
+//         'menuItem:share:QZone',
+//         'menuItem:share:weiboApp',
+//         'menuItem:favorite',
+//         'menuItem:share:qq',
+//         'menuItem:share:QZone',
+//         'menuItem:share:email',
+//         'menuItem:readMode',
+//         'menuItem:originPage',
+//         'menuItem:openWithQQBrowser',
+//         'menuItem:openWithSafari',
+//       ],
+//       success: function (res) {
+//         alert('已隐藏“阅读模式”，“分享到朋友圈”，“复制链接”等按钮');
+//       },
+//       fail: function (res) {
+//         alert(JSON.stringify(res));
+//       }
+//     });
+//   };
+// }
 
-window.WeixinJSBridge.enableDebugMode = function (callback) {
-        window.onerror = function (errorMessage, scriptURI, lineNumber, columnNumber) {
+// window.WeixinJSBridge.enableDebugMode = function (callback) {
+//         window.onerror = function (errorMessage, scriptURI, lineNumber, columnNumber) {
 
-            // 有callback的情况下，将错误信息传递到options.callback中
-            if (typeof callback === 'function') {
-                callback({
-                    message: errorMessage,
-                    script: scriptURI,
-                    line: lineNumber,
-                    column: columnNumber
-                });
-            } else {
-                // 其他情况，都以alert方式直接提示错误信息
-                var msgs = [];
-                msgs.push("额，代码有错。。。");
-                msgs.push("\n错误信息：", errorMessage);
-                msgs.push("\n出错文件：", scriptURI);
-                msgs.push("\n出错位置：", lineNumber + '行，' + columnNumber + '列');
-                alert(msgs.join(''));
-            }
-        }
-    };
+//             // 有callback的情况下，将错误信息传递到options.callback中
+//             if (typeof callback === 'function') {
+//                 callback({
+//                     message: errorMessage,
+//                     script: scriptURI,
+//                     line: lineNumber,
+//                     column: columnNumber
+//                 });
+//             } else {
+//                 // 其他情况，都以alert方式直接提示错误信息
+//                 var msgs = [];
+//                 msgs.push("额，代码有错。。。");
+//                 msgs.push("\n错误信息：", errorMessage);
+//                 msgs.push("\n出错文件：", scriptURI);
+//                 msgs.push("\n出错位置：", lineNumber + '行，' + columnNumber + '列');
+//                 alert(msgs.join(''));
+//             }
+//         }
+//     };
+
+
+
+
+
+$(document).ready(function(){
+    alert(storeWithExpiration.get('tel'));
+});
