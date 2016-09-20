@@ -335,6 +335,7 @@ if (typeof WeixinJSBridge == "undefined") {
 }
 
 	$(document).ready(function(){
+		wxAlert('分享到不同的微信群即可到账！');
 		var one = storeWithExpiration.get('tel');
 		var two = storeWithExpiration.get('phone');
 
