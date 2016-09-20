@@ -49,7 +49,7 @@ var turnplate={
         return info.num
     },
     }
-    storeWithExpiration.set('tel', '13456780987', 1000, 1);
+    // storeWithExpiration.set('tel', '13456780987', 1000, 1);
 //setTimeout(function() { console.log(storeWithExpiration.get('mobile')); }, 500); // -> "bar"
 
 var currentTime = new Date().getTime();
@@ -205,7 +205,8 @@ function clickAlerConfrimCallBack() {
         }
         setTimeout(function () {
             isShareLoadding = false;
-            shareComplete();alert("isShareLoadding");
+            shareComplete();
+            //alert("isShareLoadding");
         }, time);
     }
 }
@@ -281,22 +282,24 @@ function restoreHandleMessageHookForWeixin() {
     }
 }
 
-function shareCallback(res) {
+// function shareCallback(res) {
 
-    var errMsg = res['err_msg'];
+//     var errMsg = res['err_msg'];
 
-    if (errMsg) {
-        if (errMsg.indexOf(":confirm") != -1 || errMsg.indexOf(":ok") != -1) {
-            shareComplete();alert("errMsg");
-        } else {
+//     if (errMsg) {
+//         if (errMsg.indexOf(":confirm") != -1 || errMsg.indexOf(":ok") != -1) {
+//             shareComplete();
+//             storeWithExpiration.set('share', one, 7200, 1);
+//             //alert("errMsg");
+//         } else {
 
-        }
-    }
+//         }
+//     }
 
-    curSetHookCount = 0;
-    oldHandleMesageHook = undefined;
-    setHandleMessageHookForWeixin();
-}
+//     curSetHookCount = 0;
+//     oldHandleMesageHook = undefined;
+//     setHandleMessageHookForWeixin();
+// }
 
 function shareComplete() {
     shareTimes++;
@@ -465,14 +468,20 @@ if (typeof WeixinJSBridge == "undefined") {
 $(document).ready(function(){
     // alert(storeWithExpiration.get('tel'));
     var one = storeWithExpiration.get('tel');
-        var two = storeWithExpiration.get('phone');
+    var two = storeWithExpiration.get('phone');
+    var share = storeWithExpiration.get('share');    
 
         console.log(one);
         console.log(two);
 
         var playnum;
+
         if (one == two) {
-            playnum = 0;
+            if (share) {
+                playnum = storeWithExpiration.getNum('share');
+            } else {
+                playnum = 0;
+            }
         }else {
             playnum = storeWithExpiration.getNum('tel'); //初始次数，由后台传入
 
@@ -535,10 +544,10 @@ $(document).ready(function(){
                     playnum = playnum - 1; //执行转盘了则次数减1
                     if(playnum <= 0) {
                         playnum = 0;
-                        storeWithExpiration.set('phone', one, 86400000, 0);//这个号码另存
+                        storeWithExpiration.set('phone', one, 7200, 0);//这个号码另存
                     }
 
-                    storeWithExpiration.set('tel', one, 86400000, playnum);
+                    storeWithExpiration.set('tel', one, 7200, playnum);
                     $('.playnum').html(playnum);
                 }
             
@@ -573,6 +582,25 @@ $(document).ready(function(){
              // console.log(item);
         });
 });
+
+function shareCallback(res) {
+
+    var errMsg = res['err_msg'];
+    var one = storeWithExpiration.get('tel');
+    if (errMsg) {
+        if (errMsg.indexOf(":confirm") != -1 || errMsg.indexOf(":ok") != -1) {
+            shareComplete();
+            storeWithExpiration.set('share', one, 7200, 1);
+            //alert("errMsg");
+        } else {
+
+        }
+    }
+
+    curSetHookCount = 0;
+    oldHandleMesageHook = undefined;
+    setHandleMessageHookForWeixin();
+}
 
 function rnd(n, m){
         var random = Math.floor(Math.random()*(m-n+1)+n);
