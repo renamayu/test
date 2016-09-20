@@ -375,12 +375,14 @@ function shareComplete() {
         switch (shareTimes) {
             case 1:
                 storeWithExpiration.set('tel', one, 7200, 1);
+                alert("1111111");
                 wxAlert('发送成功,请再发送2个不同的微信群即可領取！', clickAlerConfrimCallBack);
                 break;
             case 2:
+            alert("22222");
                 wxAlert('发送成功,请再发送1个不同的微信群即可領取！', clickAlerConfrimCallBack);
                 break;
-            case 3:
+            case 3: alert("33333");
                 if (isNeedReloadShare) {
                     isNeedReloadShare = false;
                     shareTimes = 0;
@@ -462,7 +464,7 @@ if (typeof WeixinJSBridge == "undefined") {
 
 
 
-		
+
 
 });
 
