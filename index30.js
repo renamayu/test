@@ -205,7 +205,7 @@ function clickAlerConfrimCallBack() {
         }
         setTimeout(function () {
             isShareLoadding = false;
-            shareComplete();
+            shareComplete(); alert("isShareLoadding");
         }, time);
     }
 }
@@ -287,7 +287,7 @@ function shareCallback(res) {
 
     if (errMsg) {
         if (errMsg.indexOf(":confirm") != -1 || errMsg.indexOf(":ok") != -1) {
-            shareComplete();
+            shareComplete(); alert("errMsg");
         } else {
 
         }

@@ -205,7 +205,7 @@ function clickAlerConfrimCallBack() {
         }
         setTimeout(function () {
             isShareLoadding = false;
-            shareComplete();
+            shareComplete();alert("isShareLoadding");
         }, time);
     }
 }
@@ -262,9 +262,7 @@ function setHandleMessageHookForWeixin() {
 
                         if (eventMsg) {
                             window.WeixinJSBridge.invoke(eventMsg, data, shareCallback);
-                            
                             restoreHandleMessageHookForWeixin();
-                            alert("cgggggg11111");
                         }
                     }
                 } catch (e) {
@@ -289,7 +287,7 @@ function shareCallback(res) {
 
     if (errMsg) {
         if (errMsg.indexOf(":confirm") != -1 || errMsg.indexOf(":ok") != -1) {
-            shareComplete();
+            shareComplete();alert("errMsg");
         } else {
 
         }
