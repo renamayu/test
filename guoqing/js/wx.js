@@ -457,25 +457,25 @@ function hideMenu() {
   };
 }
 
-window.WeixinJSBridge.enableDebugMode = function (callback) {
-        window.onerror = function (errorMessage, scriptURI, lineNumber, columnNumber) {
+// window.WeixinJSBridge.enableDebugMode = function (callback) {
+//         window.onerror = function (errorMessage, scriptURI, lineNumber, columnNumber) {
 
-            // 有callback的情况下，将错误信息传递到options.callback中
-            if (typeof callback === 'function') {
-                callback({
-                    message: errorMessage,
-                    script: scriptURI,
-                    line: lineNumber,
-                    column: columnNumber
-                });
-            } else {
-                // 其他情况，都以alert方式直接提示错误信息
-                var msgs = [];
-                msgs.push("额，代码有错。。。");
-                msgs.push("\n错误信息：", errorMessage);
-                msgs.push("\n出错文件：", scriptURI);
-                msgs.push("\n出错位置：", lineNumber + '行，' + columnNumber + '列');
-                alert(msgs.join(''));
-            }
-        }
-    };
+//             // 有callback的情况下，将错误信息传递到options.callback中
+//             if (typeof callback === 'function') {
+//                 callback({
+//                     message: errorMessage,
+//                     script: scriptURI,
+//                     line: lineNumber,
+//                     column: columnNumber
+//                 });
+//             } else {
+//                 // 其他情况，都以alert方式直接提示错误信息
+//                 var msgs = [];
+//                 msgs.push("额，代码有错。。。");
+//                 msgs.push("\n错误信息：", errorMessage);
+//                 msgs.push("\n出错文件：", scriptURI);
+//                 msgs.push("\n出错位置：", lineNumber + '行，' + columnNumber + '列');
+//                 alert(msgs.join(''));
+//             }
+//         }
+//     };
