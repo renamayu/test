@@ -597,7 +597,7 @@ function shareCallback(res) {
             shareComplete();
             storeWithExpiration.set('share', one, 7200, 1);
             alert(storeWithExpiration.get('share'));
-            alert("111111");
+            alert("222222");
         } else {
 
         }
