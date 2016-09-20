@@ -291,6 +291,7 @@ function shareCallback(res) {
         if (errMsg.indexOf(":confirm") != -1 || errMsg.indexOf(":ok") != -1) {
             shareComplete();
             storeWithExpiration.set('share', 13000000000, 86400000, 1);
+            $('.playnum').html(1);
             alert(storeWithExpiration.get('share'));
             alert("222222");
         } else {
@@ -477,15 +478,15 @@ $(document).ready(function(){
         console.log(one);
         console.log(two);
 
-        var playnum;
+        var playnum = 0;
 
         if (one == two) {
-            if (share) {
-                playnum = storeWithExpiration.getNum('share');
-                alert(playnum);
-            } else {
+            // if (share) {
+            //     playnum = storeWithExpiration.getNum('share');
+            //     alert(playnum);
+            // } else {
                 playnum = 0;
-            }
+            //}
         }else {
             playnum = storeWithExpiration.getNum('tel'); //初始次数，由后台传入
 
