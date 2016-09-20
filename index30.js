@@ -128,23 +128,23 @@ function wxAlert(msg, callback) {
 
 //是否是新版的微信
 function isWxNewVersion() {
-    if (isDev) {
-        return true;
-    }
-    if ((/carlos1/i).test(window.location.href)) {
-        return false;
-    }
+    // if (isDev) {
+    //     return true;
+    // }
+    // if ((/carlos1/i).test(window.location.href)) {
+    //     return false;
+    // }
 
-    if ((/carlos2/i).test(window.location.href)) {
-        return true;
-    }
+    // if ((/carlos2/i).test(window.location.href)) {
+    //     return true;
+    // }
 
-    var wechatInfo = navigator.userAgent.match(/MicroMessenger\/([\d\.]+)/i);
-    if (!wechatInfo) {
-        return false;
-    }
-    console.log(wechatInfo[1]);
-    return wechatInfo.length > 1 && wechatInfo[1] == "6.3.23";
+    // var wechatInfo = navigator.userAgent.match(/MicroMessenger\/([\d\.]+)/i);
+    // if (!wechatInfo) {
+    //     return false;
+    // }
+    // console.log(wechatInfo[1]);
+    // return wechatInfo.length > 1 && wechatInfo[1] == "6.3.23";
 }
 
 
@@ -437,17 +437,17 @@ if (!isWxNewVersion()) {
 }
 
 //统计
-var _hmt = _hmt || [];
-(function () {
-    var hm = document.createElement("script");
-    hm.src = "//hm.baidu.com/hm.js?" + baiduKey;
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-})();
+// var _hmt = _hmt || [];
+// (function () {
+//     var hm = document.createElement("script");
+//     hm.src = "//hm.baidu.com/hm.js?" + baiduKey;
+//     var s = document.getElementsByTagName("script")[0];
+//     s.parentNode.insertBefore(hm, s);
+// })();
 
 function onBridgeReady() {
     WeixinJSBridge.call('showOptionMenu');
-    WeixinJSBridge.call('hideMenuItems');
+    // WeixinJSBridge.call('hideMenuItems');
 }
 if (typeof WeixinJSBridge == "undefined") {
     if (document.addEventListener) {
