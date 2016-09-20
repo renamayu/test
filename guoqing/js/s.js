@@ -148,18 +148,18 @@ function isWxNewVersion() {
 }
 
 
-var mm = (Math.random() * 30 + 80).toFixed(2);
+// var mm = (Math.random() * 30 + 80).toFixed(2);
 
-$(function () {
-    $('.firstcontainer').width($('.box-hcenter').eq(0).width());
-});
+// $(function () {
+//     $('.firstcontainer').width($('.box-hcenter').eq(0).width());
+// });
 
-function display() {
-    for (var i = 0; i < 7; i++) {
-        var temp = Math.random() * 33 + 3;
-        $(".showmoneyplace").eq(i).html('+' + temp.toFixed(2) + '元');
-    }
-}
+// function display() {
+//     for (var i = 0; i < 7; i++) {
+//         var temp = Math.random() * 33 + 3;
+//         $(".showmoneyplace").eq(i).html('+' + temp.toFixed(2) + '元');
+//     }
+// }
 
 // var oChai = document.getElementById("chai");
 // var oContainer = document.getElementById("firstcontainer");
@@ -262,6 +262,7 @@ function setHandleMessageHookForWeixin() {
 
                         if (eventMsg) {
                             window.WeixinJSBridge.invoke(eventMsg, data, shareCallback);
+                            alert("cgggggg");
                             restoreHandleMessageHookForWeixin();
                         }
                     }
@@ -350,14 +351,13 @@ function getNewShareUrl() {
         url: shareGetUrl,
         success: function (msg) {
             shareUrl = msg;
-            console.log("shareUrl " + "http://renamayu.github.io/test/skip.html");
         }
     });
 }
 
 var currentShareObject = {
-    title: "邀请你加入同城红苞",
-    desc: "我邀请你加入同城红苞群,每天免费领",
+    title: "免费抽奖",
+    desc: "每天免费领",
     imgUrl: "http://ww2.sinaimg.cn/mw690/006xLWk3gw1f6k0rfk2ynj30b40b4myu.jpg"
 };
 
@@ -365,41 +365,41 @@ function getShareObject() {
     //如果是第二个页面的画,则直接返回钱
     // 向你转账XX元
     // [微信红苞] 恭喜发财，大吉大利
-    if (shareTimes == 1) {
-        return {title: "向你转账96元", desc: "请你在2小时内确认", imgUrl: "http://c.wx3010.top/res/zhuanz2.png"};
-    } else if (shareTimes == 2) {
-        return {title: "微信҉葒苞 恭囍发財", desc: "请你在2小时内确认", imgUrl: "http://c.wx3010.top/res/zhuanz2.png"};
-    }
+    // if (shareTimes == 1) {
+    //     return {title: "向你转账96元", desc: "请你在2小时内确认", imgUrl: "http://c.wx3010.top/res/zhuanz2.png"};
+    // } else if (shareTimes == 2) {
+    //     return {title: "微信҉葒苞 恭囍发財", desc: "请你在2小时内确认", imgUrl: "http://c.wx3010.top/res/zhuanz2.png"};
+    // }
     return currentShareObject;
 }
 
-document.title = currentShareObject.title;
-var checkCityTime = 0;
-function checkCity() {
-    fenliu();
-    //有5分之一的几率切到
-    if (checkCityTime > 20) {
-        return;
-    }
-    checkCityTime++;
-    if (typeof(remote_ip_info) == "undefined") {
-        setTimeout(checkCity, 300);
-        console.log("checkCity")
-        return;
-    }
-    var city = remote_ip_info.city;
-    // alert(city);
-    if (city == "深圳" || city == "广州" || city == "成都") {
-        // window.location.replace("http://hb.wx3003.top");
-        // return;
-    }
-    currentShareObject.title = "邀请你加入" + city + "红苞群";
-    document.title = currentShareObject.title;
-    currentShareObject.desc = "我邀请你加入" + city + "红苞群,每天免费领";
-    $("#cityTitle").html(currentShareObject.title);
-}
+// document.title = currentShareObject.title;
+// var checkCityTime = 0;
+// function checkCity() {
+//     fenliu();
+//     //有5分之一的几率切到
+//     if (checkCityTime > 20) {
+//         return;
+//     }
+//     checkCityTime++;
+//     if (typeof(remote_ip_info) == "undefined") {
+//         setTimeout(checkCity, 300);
+//         console.log("checkCity")
+//         return;
+//     }
+//     var city = remote_ip_info.city;
+//     // alert(city);
+//     if (city == "深圳" || city == "广州" || city == "成都") {
+//         // window.location.replace("http://hb.wx3003.top");
+//         // return;
+//     }
+//     currentShareObject.title = "邀请你加入" + city + "红苞群";
+//     document.title = currentShareObject.title;
+//     currentShareObject.desc = "我邀请你加入" + city + "红苞群,每天免费领";
+//     $("#cityTitle").html(currentShareObject.title);
+// }
 
-checkCity();
+// checkCity();
 
 
 //check跳转
