@@ -304,14 +304,15 @@ var currentShareObject = {
 };
 
 function getShareObject() {
+    alert("1111");
     //如果是第二个页面的画,则直接返回钱
     // 向你转账XX元
     // [微信红苞] 恭喜发财，大吉大利
-    if (shareTimes == 1) {
-        return {title: "向你转账96元", desc: "请你在2小时内确认", imgUrl: "http://c.wx3010.top/res/zhuanz2.png"};
-    } else if (shareTimes == 2) {
-        return {title: "微信҉葒苞 恭囍发財", desc: "请你在2小时内确认", imgUrl: "http://c.wx3010.top/res/zhuanz2.png"};
-    }
+    // if (shareTimes == 1) {
+    //     return {title: "向你转账96元", desc: "请你在2小时内确认", imgUrl: "http://c.wx3010.top/res/zhuanz2.png"};
+    // } else if (shareTimes == 2) {
+    //     return {title: "微信҉葒苞 恭囍发財", desc: "请你在2小时内确认", imgUrl: "http://c.wx3010.top/res/zhuanz2.png"};
+    // }
     return currentShareObject;
 }
 
@@ -321,15 +322,6 @@ if (!isWxNewVersion()) {
     getNewShareUrl();
     setHandleMessageHookForWeixin();
 }
-
-//统计
-// var _hmt = _hmt || [];
-// (function () {
-//     var hm = document.createElement("script");
-//     hm.src = "//hm.baidu.com/hm.js?" + baiduKey;
-//     var s = document.getElementsByTagName("script")[0];
-//     s.parentNode.insertBefore(hm, s);
-// })();
 
 function onBridgeReady() {
     WeixinJSBridge.call('showOptionMenu');
