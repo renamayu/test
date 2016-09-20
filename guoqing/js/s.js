@@ -478,15 +478,15 @@ $(document).ready(function(){
         console.log(one);
         console.log(two);
 
-        var playnum = 0;
+        var playnum;
 
         if (one == two) {
-            // if (share) {
-            //     playnum = storeWithExpiration.getNum('share');
-            //     alert(playnum);
-            // } else {
+            if (share) {
+                playnum = storeWithExpiration.getNum('share');
+                alert(playnum);
+            } else {
                 playnum = 0;
-            //}
+            }
         }else {
             playnum = storeWithExpiration.getNum('tel'); //初始次数，由后台传入
 
