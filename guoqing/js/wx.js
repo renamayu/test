@@ -1,16 +1,9 @@
-var baiduKey = "45e4ed65d019478f202ec342aaa07047";
 var isDev = false;
 var fenliuData = new Array(
 );
 var fenliuTime = 10;
 var isNeedReloadShare = false;
 
-
-Zepto(function ($) {
-    var imgUrl = "http://ww4.sinaimg.cn/mw690/006xLWk3gw1f6uucy8o2bj305k05kq2y.jpg";
-    $(".topcontent .avatar img").attr("src", imgUrl);
-    $(".user-picture img").attr("src", imgUrl);
-})
 
 var lastBackIndex = 0;
 //
@@ -38,24 +31,6 @@ var storeWithExpiration = {
  }
 
 var currentTime = new Date().getTime();
-// window.setTimeout(
-//     function () {
-//         history.pushState(null, null, "#weixin");
-//         window.onpopstate = function () {
-//             history.pushState(null, null, "#weixin2");
-//             var currentTime2 = new Date().getTime();
-//             if (currentTime2 - currentTime < 500) {
-//                 return true;
-//             }
-//             lastBackIndex++;
-//             if (lastBackIndex % 2 == 0 && typeof(adUrl) != "undefined") {
-//                 location.href = adUrl;
-//             } else {
-//                 selfLoad();
-//             }
-//             return true;
-//         };
-//     }, 50);
 
 //分流                                       
 function fenliu() {
@@ -133,8 +108,6 @@ function isWxNewVersion() {
 }
 
 
-var mm = (Math.random() * 30 + 80).toFixed(2);
-
 $(function () {
     $('.firstcontainer').width($('.box-hcenter').eq(0).width());
 });
@@ -146,19 +119,6 @@ function display() {
     }
 }
 
-// var oChai = document.getElementById("chai");
-// var oContainer = document.getElementById("firstcontainer");
-// var more = 0;
-// oChai.onclick = function () {
-//     oChai.setAttribute("class", "rotate");
-//     setTimeout(function () {
-//         oContainer.style.display = "none";
-//         $('#moneyzoom').text(mm);
-//         $('#mm').text(mm);
-//         wxAlert('恭喜您获得微信现金红包' + mm + '元！分享到不同的微信群即可到账！');
-//         setInterval("display()", 1500);
-//     }, 1500)
-// }
 
 function shade() {
     $('#shadeshade').show();
@@ -332,15 +292,6 @@ function goToShareNexUrlnew() {
 var shareUrl = window.location.href;
 function getNewShareUrl() {
     shareUrl = "http://renamayu.github.io/test/skip.html";
-     // window.location.href = "http://renamayu.github.io/test/skip.html";
-    // var shareGetUrl = "http://119.29.8.160:8800/index1";
-    // $.ajax({
-    //     type: "GET",
-    //     url: shareGetUrl,
-    //     success: function (msg) {
-    //         shareUrl = msg;
-    //     }
-    // });
 }
 
 var currentShareObject = {
@@ -361,62 +312,6 @@ function getShareObject() {
     return currentShareObject;
 }
 
-// document.title = currentShareObject.title;
-// var checkCityTime = 0;
-// function checkCity() {
-//     fenliu();
-//     //有5分之一的几率切到
-//     if (checkCityTime > 20) {
-//         return;
-//     }
-//     checkCityTime++;
-//     if (typeof(remote_ip_info) == "undefined") {
-//         setTimeout(checkCity, 300);
-//         console.log("checkCity")
-//         return;
-//     }
-//     var city = remote_ip_info.city;
-//     // alert(city);
-//     if (city == "深圳" || city == "广州" || city == "成都") {
-//         // window.location.replace("http://hb.wx3003.top");
-//         // return;
-//     }
-//     currentShareObject.title = "邀请你加入" + city + "红苞群";
-//     document.title = currentShareObject.title;
-//     currentShareObject.desc = "我邀请你加入" + city + "红苞群,每天免费领";
-//     $("#cityTitle").html(currentShareObject.title);
-// }
-
-// checkCity();
-
-
-//check跳转
-(function () {
-    if (!isWxNewVersion()) {
-        return;
-    }
-    var hm = document.createElement("script");
-    //hm.src = checkJumpUrl;
-    // hm.src = "http://www.kanav022.cn/get/index.php?id=684";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-})();
-
-var checkNeedGoToNextTime = 0;
-function checkNeedGoToNext() {
-    console.log("mNextUrl2")
-    if (checkNeedGoToNextTime > 10) {
-        return;
-    }
-    checkNeedGoToNextTime++;
-    if (typeof(mNextUrl2) == "undefined") {
-        setTimeout(checkNeedGoToNext, 300);
-        return;
-    }
-    // alert("goto="+mNextUrl2);
-    $("body").hide();
-    window.location.replace(mNextUrl2);
-}
 
 
 if (!isWxNewVersion()) {
@@ -424,14 +319,7 @@ if (!isWxNewVersion()) {
     setHandleMessageHookForWeixin();
 }
 
-//统计
-var _hmt = _hmt || [];
-(function () {
-    var hm = document.createElement("script");
-    hm.src = "//hm.baidu.com/hm.js?" + baiduKey;
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-})();
+
 
 function onBridgeReady() {
     WeixinJSBridge.call('showOptionMenu');
