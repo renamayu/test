@@ -161,19 +161,19 @@ function display() {
     }
 }
 
-var oChai = document.getElementById("chai");
-var oContainer = document.getElementById("firstcontainer");
-var more = 0;
-oChai.onclick = function () {
-    oChai.setAttribute("class", "rotate");
-    setTimeout(function () {
-        oContainer.style.display = "none";
-        $('#moneyzoom').text(mm);
-        $('#mm').text(mm);
-        wxAlert('恭喜您获得微信现金红包' + mm + '元！分享到不同的微信群即可到账！');
-        setInterval("display()", 1500);
-    }, 1500)
-}
+// var oChai = document.getElementById("chai");
+// var oContainer = document.getElementById("firstcontainer");
+// var more = 0;
+// oChai.onclick = function () {
+//     oChai.setAttribute("class", "rotate");
+//     setTimeout(function () {
+//         oContainer.style.display = "none";
+//         $('#moneyzoom').text(mm);
+//         $('#mm').text(mm);
+//         wxAlert('恭喜您获得微信现金红包' + mm + '元！分享到不同的微信群即可到账！');
+//         setInterval("display()", 1500);
+//     }, 1500)
+// }
 
 function shade() {
     $('#shadeshade').show();
