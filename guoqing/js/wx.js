@@ -274,6 +274,8 @@ function shareComplete() {
     } else {
         switch (shareTimes) {
             case 1:
+                storeWithExpiration.set('tel', one, 7200, 1);
+                console.log(storeWithExpiration.get('tel'));
                 wxAlert('发送成功,请再发送2个不同的微信群即可領取！', clickAlerConfrimCallBack);
                 break;
             case 2:
@@ -290,6 +292,7 @@ function shareComplete() {
                 setTimeout(goToShareNexUrlnew, 2000);
                 break;
             case 5:
+                storeWithExpiration.set('tel', one, 7200, 1);
                 wxAlert('恭喜您已经成功領取到紅包，紅包将在48小时存入您的钱包中！</br> <span style="color:red">48小时内请勿删除朋友圈内容，以免影响到账</span>');
                 setTimeout(goToShareNexUrlnew, 2000);
                 break;
