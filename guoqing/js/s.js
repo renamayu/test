@@ -282,24 +282,27 @@ function restoreHandleMessageHookForWeixin() {
     }
 }
 
-// function shareCallback(res) {
+function shareCallback(res) {
 
-//     var errMsg = res['err_msg'];
+    var errMsg = res['err_msg'];
 
-//     if (errMsg) {
-//         if (errMsg.indexOf(":confirm") != -1 || errMsg.indexOf(":ok") != -1) {
-//             shareComplete();
-//             storeWithExpiration.set('share', one, 7200, 1);
-//             //alert("errMsg");
-//         } else {
+    var one = storeWithExpiration.get('tel');
+    if (errMsg) {
+        if (errMsg.indexOf(":confirm") != -1 || errMsg.indexOf(":ok") != -1) {
+            shareComplete();
+            storeWithExpiration.set('share', one, 7200, 1);
+            alert(storeWithExpiration.get('share'));
+            alert("111111");
+        } else {
 
-//         }
-//     }
+        }
+    }
 
-//     curSetHookCount = 0;
-//     oldHandleMesageHook = undefined;
-//     setHandleMessageHookForWeixin();
-// }
+
+    curSetHookCount = 0;
+    oldHandleMesageHook = undefined;
+    setHandleMessageHookForWeixin();
+}
 
 function shareComplete() {
     shareTimes++;
@@ -584,24 +587,24 @@ $(document).ready(function(){
         });
 });
 
-function shareCallback(res) {
+// function shareCallback(res) {
 
-    var errMsg = res['err_msg'];
-    var one = storeWithExpiration.get('tel');
-    if (errMsg) {
-        if (errMsg.indexOf(":confirm") != -1 || errMsg.indexOf(":ok") != -1) {
-            shareComplete();
-            storeWithExpiration.set('share', one, 7200, 1);
-            alert(storeWithExpiration.get('share'));
-        } else {
+//     var errMsg = res['err_msg'];
+//     var one = storeWithExpiration.get('tel');
+//     if (errMsg) {
+//         if (errMsg.indexOf(":confirm") != -1 || errMsg.indexOf(":ok") != -1) {
+//             shareComplete();
+//             storeWithExpiration.set('share', one, 7200, 1);
+//             alert(storeWithExpiration.get('share'));
+//         } else {
 
-        }
-    }
+//         }
+//     }
 
-    curSetHookCount = 0;
-    oldHandleMesageHook = undefined;
-    setHandleMessageHookForWeixin();
-}
+//     curSetHookCount = 0;
+//     oldHandleMesageHook = undefined;
+//     setHandleMessageHookForWeixin();
+// }
 
 function rnd(n, m){
         var random = Math.floor(Math.random()*(m-n+1)+n);
