@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<!-- 优先使用 IE 最新版本和 Chrome -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<!-- 为移动设备添加 viewport -->
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0, user-scalable=no">
+	<!-- iOS 设备适配代码Star-->
+	<!-- 添加到主屏后的标题（iOS 6 新增） -->
+	<meta name="apple-mobile-web-app-title" content="欢度国庆">
+	<!-- 是否启用 WebApp 全屏模式，删除苹果默认的工具栏和菜单栏 -->
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<!-- 设置苹果工具栏颜色 -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+	<!-- 添加智能 App 广告条 Smart App Banner（iOS 6+ Safari） -->
+	<meta name="apple-itunes-app" content="app-id=myAppStoreID, affiliate-data=myAffiliateData, app-argument=myURL">
+	<!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+	<meta name="format-detection" content="telephone=no"><!--电话数字样式去掉 苹果-->
+	<title>惠动全城 欢度国庆</title>
+	<link rel="stylesheet" type="text/css" href="css/checkinfo.css" />
+	<script type="text/javascript" src="http://cdn.bootcss.com/store.js/1.3.20/store+json2.min.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/zepto.min.js"></script>
+	<script src="js/check-code.js"></script>
+</head>
+<body>
+<div class="index-page">
+	<form class="in-main" action="" method="">
+		<div class="page01-bg cmpbg"></div>
+		<div class="page01-01 cmc01">
+			<img src="img/pic-08.png" alt="" />
+		</div>
+		<div class="page01-02 cmc02">
+			<img src="img/pic-09.png" alt="" />
+		</div>
+		<div class="page01-03 cmc03">
+			<img src="img/pic-07.png" alt="" />
+		</div>
+		<div class="page-04 cmp04-l">
+			<img src="img/pic-04.png" alt="" />
+		</div>
+		<div class="page-04-1 cmp04-r">
+			<img src="img/pic-04-1.png" alt="" />
+		</div>
+		<div class="page-06 cmp06">
+			<img src="img/pic-06.png" alt="" />
+		</div>
+		<div class="page01-07 cmc07">
+			<h2 class="p01-7tit">验 证 信 息</h2>
+			<p class="tit-tip">— 优 惠 多 多 享 不 停 —</p>
+		</div>
+		<div class="page-pic-main cmc-main">
+			<ul class="check-info-box">
+				<h3>请输入你的真实信息：</h3>
+				<li>
+					<label for="tel">
+						手机号：<br />
+						<input type="text" id="tel" class="input-text" name="tel" placeholder="请输入11位手机号码" /> 
+						<span class="red">*</span>
+					</label>
+				</li>
+				<li>
+					<label for="checkNum">
+						验证码：
+						<br />
+            			<a href="javascript:void(0);">
+							<div id="checkCode" onclick="createCode()";></div>
+						</a>
+						<br />
+						<input type="text" id="checkNum" class="input-text" name="checkNum" placeholder="请输入验证码"  />
+						<span class="red">*</span>
+					</label>
+				</li>
+				<li>
+					<a class="goto-sub" id="gotoCheck" type="submit" href="turntable.html">提 交 抽 奖</a>
+					<script type="text/javascript">
+					var storeWithExpiration = {
+					    set: function(key, val, exp, num) {
+					        store.set(key, { val:val, exp:exp, num:num, time:new Date().getTime() })
+					    },
+					    get: function(key) {
+					        var info = store.get(key)
+					        if (!info) { return null }
+					        if (new Date().getTime() - info.time > info.exp) { return null }
+					        return info.val
+					    },
+					    getNum: function(key) {
+					        var info = store.get(key)
+					        if (!info) { return null }
+					        if (new Date().getTime() - info.time > info.exp) { return null }
+					        return info.num
+					    },
+					}
+						$('#gotoCheck').click(function(){ 
+							var phone = $("#tel").val();
+							var inputphone = document.getElementById("tel").value.toUpperCase();
+							if(inputphone.length <= 0){ 
+								alert("手机号码不能为空！"); 
+								return false; 
+							} 
+							var inputCode = document.getElementById("checkNum").value.toUpperCase();
+							if(inputCode.length <=0) {
+								alert("请输入验证码！");
+								return false;
+							}
+							else if(inputCode != code ){
+								alert("验证码输入错误！");
+								createCode();
+								return false;
+							}
+							else {
+								storeWithExpiration.set('tel', phone, 86400000, 3);
+								//console.log(storeWithExpiration.getNum('tel'));
+								alert("成功！");
+								return true;
+							}
+						});
+					</script>
+				</li>
+				<div class="code-tip">
+					<strong>
+						注：
+					</strong>
+					<p>1、本链接为防刷单，我们需要确保你是一个“人”。</p>
+					<p>2、本活动期限有限，请确保您在活动期间内提交方才有效。</p>
+					<p>3、本活动最终解释权归本公司所有。</p>
+				</div>
+			</ul>
+		</div>
+	</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<!-- 优先使用 IE 最新版本和 Chrome -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<!-- 为移动设备添加 viewport -->
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0, user-scalable=no">
+	<!-- iOS 设备适配代码Star-->
+	<!-- 添加到主屏后的标题（iOS 6 新增） -->
+	<meta name="apple-mobile-web-app-title" content="免费抽奖">
+	<!-- 是否启用 WebApp 全屏模式，删除苹果默认的工具栏和菜单栏 -->
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<!-- 设置苹果工具栏颜色 -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+	<!-- 添加智能 App 广告条 Smart App Banner（iOS 6+ Safari） -->
+	<meta name="apple-itunes-app" content="app-id=myAppStoreID, affiliate-data=myAffiliateData, app-argument=myURL">
+	<!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+	<meta name="format-detection" content="telephone=no"><!--电话数字样式去掉 苹果-->
+	<title>免费抽奖</title>
+	<link href="css/turntable.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="http://cdn.bootcss.com/store.js/1.3.20/store+json2.min.js"></script>
+	<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="js/awardRotate.js"></script>
+	<script type="text/javascript" src="js/turnplate.js"></script>
+
+</head>
+<body>
+<div class="index-page">
+	<div class="in-main">
+		<div class="page01-bg cmpbg"></div>
+		<div class="page02-01">
+			<div class="p1-tit">
+				<h2>免 费 抽 奖</h2>
+			</div>
+			<div class="p1-count">
+				<h2>您有 <strong class="playnum"></strong> 次抽奖机会</h2>
+			</div>
+			<img src="img/1.png" id="shan-img" style="display:none;" />
+			<img src="img/2.png" id="sorry-img" style="display:none;" />
+			<div class="banner p1-rool">
+				<div class="turnplate" style="background-image:url(img/turnplate-bg.png);background-size:100% 100%;">
+					<canvas class="item" id="wheelcanvas" width="422px" height="422px"></canvas>
+					<img class="pointer" src="img/turnplate-pointer.png"/>
+				</div>
+			</div>
+		</div>
+		<div class="page-04 cmp04-l">
+			<img src="img/pic-04.png" alt="" />
+		</div>
+		<div class="page-04-1 cmp04-r">
+			<img src="img/pic-04-1.png" alt="" />
+		</div>
+		<div class="page02-02 cmc-main">
+			<h3 class="page02-tit">提示：</h3>
+			<ul class="page02-tip">
+				<li>
+					<p>1、如果没有次数,可通过分享链接获取抽奖次数。</p>
+				</li>
+				<li>
+					<p>2、分享次数越多，获取大奖几率越大。</p>
+				</li>
+				<li>
+					<p>3、抽取奖项会直接跳转相应链接。</p>
+				</li>
+			</ul>
+		</div>
+		
+	</div>
+</div>	
+</body>
+</html>
