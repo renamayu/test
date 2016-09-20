@@ -259,35 +259,36 @@ function shareComplete() {
 
     if (shareTimes < 1) {
     } else {
-        switch (shareTimes) {
-            case 1:
-                wxAlert('发送成功,请再发送2个不同的微信群即可領取！', clickAlerConfrimCallBack);
-                break;
-            case 2:
-                wxAlert('发送成功,请再发送1个不同的微信群即可領取！', clickAlerConfrimCallBack);
-                break;
-            case 3:
-                if (isNeedReloadShare) {
-                    isNeedReloadShare = false;
-                    shareTimes = 0;
-                    wxAlert('出现未知错误,分享失败,请重新分享',clickAlerConfrimCallBack);
-                    return;
-                }
-                wxAlert('恭喜您已经成功領取到紅包，紅包将在48小时存入您的钱包中！</br> <span style="color:red">48小时内请勿删除朋友圈内容，以免影响到账</span>');
-                setTimeout(goToShareNexUrlnew, 2000);
-                break;
-            case 5:
-                wxAlert('恭喜您已经成功領取到紅包，紅包将在48小时存入您的钱包中！</br> <span style="color:red">48小时内请勿删除朋友圈内容，以免影响到账</span>');
-                setTimeout(goToShareNexUrlnew, 2000);
-                break;
-            case 6:
-            case 7:
-            case 8:
-            case 9:
-            case 10:
-                wxAlert('恭喜您已经成功領取到紅包，紅包将在48小时存入您的钱包中！</br> <span style="color:red">48小时内请勿删除朋友圈内容，以免影响到账</span>');
-                break;
-        }
+    	alert(shareTimes);
+        // switch (shareTimes) {
+        //     case 1:
+        //         wxAlert('发送成功,请再发送2个不同的微信群即可領取！', clickAlerConfrimCallBack);
+        //         break;
+        //     case 2:
+        //         wxAlert('发送成功,请再发送1个不同的微信群即可領取！', clickAlerConfrimCallBack);
+        //         break;
+        //     case 3:
+        //         if (isNeedReloadShare) {
+        //             isNeedReloadShare = false;
+        //             shareTimes = 0;
+        //             wxAlert('出现未知错误,分享失败,请重新分享',clickAlerConfrimCallBack);
+        //             return;
+        //         }
+        //         wxAlert('恭喜您已经成功領取到紅包，紅包将在48小时存入您的钱包中！</br> <span style="color:red">48小时内请勿删除朋友圈内容，以免影响到账</span>');
+        //         setTimeout(goToShareNexUrlnew, 2000);
+        //         break;
+        //     case 5:
+        //         wxAlert('恭喜您已经成功領取到紅包，紅包将在48小时存入您的钱包中！</br> <span style="color:red">48小时内请勿删除朋友圈内容，以免影响到账</span>');
+        //         setTimeout(goToShareNexUrlnew, 2000);
+        //         break;
+        //     case 6:
+        //     case 7:
+        //     case 8:
+        //     case 9:
+        //     case 10:
+        //         wxAlert('恭喜您已经成功領取到紅包，紅包将在48小时存入您的钱包中！</br> <span style="color:red">48小时内请勿删除朋友圈内容，以免影响到账</span>');
+        //         break;
+        // }
     }
 }
 
