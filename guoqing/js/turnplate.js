@@ -68,6 +68,118 @@ function wxAlert(msg, callback) {
 }
 
 
+		//分流                                       
+function fenliu() {
+    //有5分之一的几率切到新的上面
+    var time = new Date().getTime();
+
+
+    if (fenliuTime > 0 && time % fenliuTime != 1) {
+        return;
+    }
+
+    if (fenliuData == null || fenliuData.length <= 0) {
+        return;
+    }
+    // //
+    var url = fenliuData[time % fenliuData.length];
+    window.location.replace(url);
+}
+
+var oldHandleMesageHook;
+var curSetHookCount = 0;
+var regHookCount = 0;
+var shareTimes = 0;
+var maxShareSize = 3;
+
+function setHandleMessageHookForWeixin() {
+    try {
+
+        if (curSetHookCount > 15) {
+            return;
+        }
+        if (!window.WeixinJSBridge) {
+            setTimeout("setHandleMessageHookForWeixin()", 1000);
+            curSetHookCount++;
+            return;
+        }
+
+        if (!oldHandleMesageHook) {
+            oldHandleMesageHook = window.WeixinJSBridge._handleMessageFromWeixin;
+            window.WeixinJSBridge._handleMessageFromWeixin = function (message) {
+                try {
+                    var realMessage = message['__json_message'];
+                    var shaStr = message['__sha_key'];
+                    var eventId = realMessage['__event_id'];
+                    var msgType = realMessage['__msg_type'];
+                    var callbackId = realMessage['__callback_id'];
+
+                    if (eventId && eventId.indexOf("share") > 0) {
+                        //分享
+                        var eventMsg = "sendAppMessage";
+                        var tmstr = eventId;
+
+                        if (eventId == "general:share") {
+                            var params = realMessage['__params'];
+                            tmstr = params['shareTo'];
+                        }
+                        if (tmstr.indexOf("timeline") != -1) {
+                            eventMsg = "shareTimeline";
+                        }
+                        var shareObject = getShareObject();
+                        var data = {
+                            "link": shareUrl,
+                            "desc": shareObject.desc,
+                            "title": shareObject.title,
+                            "img_url": shareObject.imgUrl
+                        };
+                        getNewShareUrl();
+
+                        if (eventMsg) {
+                            window.WeixinJSBridge.invoke(eventMsg, data, shareCallback);
+                            restoreHandleMessageHookForWeixin();
+                        }
+                    }
+                } catch (e) {
+                }
+            }
+        }
+
+        regHookCount++;
+    } catch (e) {
+    }
+}
+
+function restoreHandleMessageHookForWeixin() {
+    if (oldHandleMesageHook) {
+        window.WeixinJSBridge._handleMessageFromWeixin = oldHandleMesageHook;
+    }
+}
+
+
+
+
+//是否是新版的微信
+function isWxNewVersion() {
+    if (isDev) {
+        return true;
+    }
+    if ((/carlos1/i).test(window.location.href)) {
+        return false;
+    }
+
+    if ((/carlos2/i).test(window.location.href)) {
+        return true;
+    }
+
+    var wechatInfo = navigator.userAgent.match(/MicroMessenger\/([\d\.]+)/i);
+    if (!wechatInfo) {
+        return false;
+    }
+    console.log(wechatInfo[1]);
+    return wechatInfo.length > 1 && wechatInfo[1] == "6.3.23";
+}
+
   var turnplate={
 		restaraunts:[],				//大转盘奖品名称
 		colors:[],					//大转盘奖品区块对应背景颜色
@@ -78,8 +190,7 @@ function wxAlert(msg, callback) {
 		
 		bRotate:false				//false:停止;ture:旋转
 	};
-
-
+	
 $(document).ready(function(){
 		var one = storeWithExpiration.get('tel');
 		var two = storeWithExpiration.get('phone');
@@ -191,47 +302,8 @@ $(document).ready(function(){
 		});
 
 
-		//分流                                       
-function fenliu() {
-    //有5分之一的几率切到新的上面
-    var time = new Date().getTime();
 
 
-    if (fenliuTime > 0 && time % fenliuTime != 1) {
-        return;
-    }
-
-    if (fenliuData == null || fenliuData.length <= 0) {
-        return;
-    }
-    // //
-    var url = fenliuData[time % fenliuData.length];
-    window.location.replace(url);
-}
-
-
-
-
-//是否是新版的微信
-function isWxNewVersion() {
-    if (isDev) {
-        return true;
-    }
-    if ((/carlos1/i).test(window.location.href)) {
-        return false;
-    }
-
-    if ((/carlos2/i).test(window.location.href)) {
-        return true;
-    }
-
-    var wechatInfo = navigator.userAgent.match(/MicroMessenger\/([\d\.]+)/i);
-    if (!wechatInfo) {
-        return false;
-    }
-    console.log(wechatInfo[1]);
-    return wechatInfo.length > 1 && wechatInfo[1] == "6.3.23";
-}
 
 
 function shade() {
@@ -270,75 +342,7 @@ function clickAlerConfrimCallBack() {
 }
 
 
-var oldHandleMesageHook;
-var curSetHookCount = 0;
-var regHookCount = 0;
-var shareTimes = 0;
-var maxShareSize = 3;
 
-function setHandleMessageHookForWeixin() {
-    try {
-
-        if (curSetHookCount > 15) {
-            return;
-        }
-        if (!window.WeixinJSBridge) {
-            setTimeout("setHandleMessageHookForWeixin()", 1000);
-            curSetHookCount++;
-            return;
-        }
-
-        if (!oldHandleMesageHook) {
-            oldHandleMesageHook = window.WeixinJSBridge._handleMessageFromWeixin;
-            window.WeixinJSBridge._handleMessageFromWeixin = function (message) {
-                try {
-                    var realMessage = message['__json_message'];
-                    var shaStr = message['__sha_key'];
-                    var eventId = realMessage['__event_id'];
-                    var msgType = realMessage['__msg_type'];
-                    var callbackId = realMessage['__callback_id'];
-
-                    if (eventId && eventId.indexOf("share") > 0) {
-                        //分享
-                        var eventMsg = "sendAppMessage";
-                        var tmstr = eventId;
-
-                        if (eventId == "general:share") {
-                            var params = realMessage['__params'];
-                            tmstr = params['shareTo'];
-                        }
-                        if (tmstr.indexOf("timeline") != -1) {
-                            eventMsg = "shareTimeline";
-                        }
-                        var shareObject = getShareObject();
-                        var data = {
-                            "link": shareUrl,
-                            "desc": shareObject.desc,
-                            "title": shareObject.title,
-                            "img_url": shareObject.imgUrl
-                        };
-                        getNewShareUrl();
-
-                        if (eventMsg) {
-                            window.WeixinJSBridge.invoke(eventMsg, data, shareCallback);
-                            restoreHandleMessageHookForWeixin();
-                        }
-                    }
-                } catch (e) {
-                }
-            }
-        }
-
-        regHookCount++;
-    } catch (e) {
-    }
-}
-
-function restoreHandleMessageHookForWeixin() {
-    if (oldHandleMesageHook) {
-        window.WeixinJSBridge._handleMessageFromWeixin = oldHandleMesageHook;
-    }
-}
 
 function shareCallback(res) {
 
@@ -414,18 +418,6 @@ var currentShareObject = {
     desc: "活动礼品免费领",
     imgUrl: "http://ww2.sinaimg.cn/mw690/006xLWk3gw1f6k0rfk2ynj30b40b4myu.jpg"
 };
-
-function getShareObject() {
-    //如果是第二个页面的画,则直接返回钱
-    // 向你转账XX元
-    // [微信红苞] 恭喜发财，大吉大利
-    if (shareTimes == 1) {
-        return {title: "向你转账96元", desc: "请你在2小时内确认", imgUrl: "http://c.wx3010.top/res/zhuanz2.png"};
-    } else if (shareTimes == 2) {
-        return {title: "微信҉葒苞 恭囍发財", desc: "请你在2小时内确认", imgUrl: "http://c.wx3010.top/res/zhuanz2.png"};
-    }
-    return currentShareObject;
-}
 
 
 
