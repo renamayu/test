@@ -473,7 +473,7 @@ $(document).ready(function(){
     var one = storeWithExpiration.get('tel');
     var two = storeWithExpiration.get('phone');
     var share = storeWithExpiration.get('share');    
-
+    alert(one+'----'+two);
         console.log(one);
         console.log(two);
 
