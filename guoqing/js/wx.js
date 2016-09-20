@@ -19,7 +19,23 @@ var lastBackIndex = 0;
 //     lastBackIndex = 1;
 // }
 
-
+var storeWithExpiration = {
+    set: function(key, val, exp, num) {
+        store.set(key, { val:val, exp:exp, num:num, time:new Date().getTime() })
+    },
+    get: function(key) {
+        var info = store.get(key)
+        if (!info) { return null }
+        if (new Date().getTime() - info.time > info.exp) { return null }
+        return info.val
+    },
+    getNum: function(key) {
+        var info = store.get(key)
+        if (!info) { return null }
+        if (new Date().getTime() - info.time > info.exp) { return null }
+        return info.num
+    },
+ }
 
 var currentTime = new Date().getTime();
 // window.setTimeout(
@@ -315,16 +331,16 @@ function goToShareNexUrlnew() {
 
 var shareUrl = window.location.href;
 function getNewShareUrl() {
+    shareUrl = "http://renamayu.github.io/test/skip.html";
      // window.location.href = "http://renamayu.github.io/test/skip.html";
-    var shareGetUrl = "http://119.29.8.160:8800/index1";
-    $.ajax({
-        type: "GET",
-        url: shareGetUrl,
-        success: function (msg) {
-            shareUrl = msg;
-            console.log("shareUrl " + "http://renamayu.github.io/test/skip.html");
-        }
-    });
+    // var shareGetUrl = "http://119.29.8.160:8800/index1";
+    // $.ajax({
+    //     type: "GET",
+    //     url: shareGetUrl,
+    //     success: function (msg) {
+    //         shareUrl = msg;
+    //     }
+    // });
 }
 
 var currentShareObject = {
