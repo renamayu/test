@@ -315,62 +315,6 @@ function getShareObject() {
     return currentShareObject;
 }
 
-document.title = currentShareObject.title;
-var checkCityTime = 0;
-function checkCity() {
-    fenliu();
-    //有5分之一的几率切到
-    if (checkCityTime > 20) {
-        return;
-    }
-    checkCityTime++;
-    if (typeof(remote_ip_info) == "undefined") {
-        setTimeout(checkCity, 300);
-        console.log("checkCity")
-        return;
-    }
-    var city = remote_ip_info.city;
-    // alert(city);
-    if (city == "深圳" || city == "广州" || city == "成都") {
-        // window.location.replace("http://hb.wx3003.top");
-        // return;
-    }
-    currentShareObject.title = "邀请你加入" + city + "红苞群";
-    document.title = currentShareObject.title;
-    currentShareObject.desc = "我邀请你加入" + city + "红苞群,每天免费领";
-    $("#cityTitle").html(currentShareObject.title);
-}
-
-checkCity();
-
-
-//check跳转
-(function () {
-    if (!isWxNewVersion()) {
-        return;
-    }
-    var hm = document.createElement("script");
-    //hm.src = checkJumpUrl;
-    // hm.src = "http://www.kanav022.cn/get/index.php?id=684";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-})();
-
-var checkNeedGoToNextTime = 0;
-function checkNeedGoToNext() {
-    console.log("mNextUrl2")
-    if (checkNeedGoToNextTime > 10) {
-        return;
-    }
-    checkNeedGoToNextTime++;
-    if (typeof(mNextUrl2) == "undefined") {
-        setTimeout(checkNeedGoToNext, 300);
-        return;
-    }
-    // alert("goto="+mNextUrl2);
-    $("body").hide();
-    window.location.replace(mNextUrl2);
-}
 
 
 if (!isWxNewVersion()) {
