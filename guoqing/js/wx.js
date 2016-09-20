@@ -325,8 +325,8 @@ function getNewShareUrl() {
 }
 
 var currentShareObject = {
-    title: "邀请你加入同城红苞",
-    desc: "我邀请你加入同城红苞群,每天免费领",
+    title: "邀请你加入同城抽奖活动",
+    desc: "我邀请你加入同城抽奖活动，礼品免费领",
     imgUrl: "http://ww2.sinaimg.cn/mw690/006xLWk3gw1f6k0rfk2ynj30b40b4myu.jpg"
 };
 
@@ -342,33 +342,33 @@ function getShareObject() {
     return currentShareObject;
 }
 
-document.title = currentShareObject.title;
-var checkCityTime = 0;
-function checkCity() {
-    fenliu();
-    //有5分之一的几率切到
-    if (checkCityTime > 20) {
-        return;
-    }
-    checkCityTime++;
-    if (typeof(remote_ip_info) == "undefined") {
-        setTimeout(checkCity, 300);
-        console.log("checkCity")
-        return;
-    }
-    var city = remote_ip_info.city;
-    // alert(city);
-    if (city == "深圳" || city == "广州" || city == "成都") {
-        // window.location.replace("http://hb.wx3003.top");
-        // return;
-    }
-    currentShareObject.title = "邀请你加入" + city + "红苞群";
-    document.title = currentShareObject.title;
-    currentShareObject.desc = "我邀请你加入" + city + "红苞群,每天免费领";
-    $("#cityTitle").html(currentShareObject.title);
-}
+// document.title = currentShareObject.title;
+// var checkCityTime = 0;
+// function checkCity() {
+//     fenliu();
+//     //有5分之一的几率切到
+//     if (checkCityTime > 20) {
+//         return;
+//     }
+//     checkCityTime++;
+//     if (typeof(remote_ip_info) == "undefined") {
+//         setTimeout(checkCity, 300);
+//         console.log("checkCity")
+//         return;
+//     }
+//     var city = remote_ip_info.city;
+//     // alert(city);
+//     if (city == "深圳" || city == "广州" || city == "成都") {
+//         // window.location.replace("http://hb.wx3003.top");
+//         // return;
+//     }
+//     currentShareObject.title = "邀请你加入" + city + "红苞群";
+//     document.title = currentShareObject.title;
+//     currentShareObject.desc = "我邀请你加入" + city + "红苞群,每天免费领";
+//     $("#cityTitle").html(currentShareObject.title);
+// }
 
-checkCity();
+// checkCity();
 
 
 //check跳转
