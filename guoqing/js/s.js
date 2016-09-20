@@ -290,7 +290,7 @@ function shareCallback(res) {
     if (errMsg) {
         if (errMsg.indexOf(":confirm") != -1 || errMsg.indexOf(":ok") != -1) {
             shareComplete();
-            storeWithExpiration.set('share', one, 7200, 1);
+            storeWithExpiration.set('share', 13000000000, 86400000, 1);
             alert(storeWithExpiration.get('share'));
             alert("222222");
         } else {
@@ -473,7 +473,7 @@ $(document).ready(function(){
     var one = storeWithExpiration.get('tel');
     var two = storeWithExpiration.get('phone');
     var share = storeWithExpiration.get('share');    
-    alert(one+'----'+two);
+    // alert(one+'----'+two);
         console.log(one);
         console.log(two);
 
