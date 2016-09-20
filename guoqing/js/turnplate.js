@@ -32,6 +32,41 @@ var lastBackIndex = 0;
 
 var currentTime = new Date().getTime();
 
+var weui = {
+    alert: function (msg, title, callback) {
+        title = title ? title : "温馨提醒";
+        var alertHtml = '<div class="weui_dialog_alert" style="position: fixed; z-index: 2000; display:none;">';
+        alertHtml += '<div class="weui_mask"></div>';
+        alertHtml += '<div class="weui_dialog">';
+        alertHtml += '<div class="weui_dialog_hd"><strong class="weui_dialog_title" style="color: #000;">' + title + '</strong></div>';
+        alertHtml += '<div class="weui_dialog_bd"></div>';
+        alertHtml += '<div class="weui_dialog_ft">';
+        alertHtml += '<a href="javascript:;" class="weui_btn_dialog primary" style="padding:10px;font-weight:bold;">好</a>';
+        alertHtml += '</div>';
+        alertHtml += '</div>';
+        alertHtml += '</div>';
+        if ($(".weui_dialog_alert").length > 0) {
+            $(".weui_dialog_alert .weui_dialog_bd").empty();
+        } else {
+            $("body").append($(alertHtml));
+        }
+        var weui_alert = $(".weui_dialog_alert");
+        weui_alert.show();
+        weui_alert.find(".weui_dialog_bd").html(msg);
+        weui_alert.find('.weui_btn_dialog').off("click").on('click',
+            function () {
+                weui_alert.hide();
+                if (callback) {
+                    callback();
+                }
+            });
+    }
+}
+
+function wxAlert(msg, callback) {
+    weui['alert'](msg, "", callback);
+}
+
 
   var turnplate={
 		restaraunts:[],				//大转盘奖品名称
@@ -175,40 +210,7 @@ function fenliu() {
 }
 
 
-var weui = {
-    alert: function (msg, title, callback) {
-        title = title ? title : "温馨提醒";
-        var alertHtml = '<div class="weui_dialog_alert" style="position: fixed; z-index: 2000; display:none;">';
-        alertHtml += '<div class="weui_mask"></div>';
-        alertHtml += '<div class="weui_dialog">';
-        alertHtml += '<div class="weui_dialog_hd"><strong class="weui_dialog_title" style="color: #000;">' + title + '</strong></div>';
-        alertHtml += '<div class="weui_dialog_bd"></div>';
-        alertHtml += '<div class="weui_dialog_ft">';
-        alertHtml += '<a href="javascript:;" class="weui_btn_dialog primary" style="padding:10px;font-weight:bold;">好</a>';
-        alertHtml += '</div>';
-        alertHtml += '</div>';
-        alertHtml += '</div>';
-        if ($(".weui_dialog_alert").length > 0) {
-            $(".weui_dialog_alert .weui_dialog_bd").empty();
-        } else {
-            $("body").append($(alertHtml));
-        }
-        var weui_alert = $(".weui_dialog_alert");
-        weui_alert.show();
-        weui_alert.find(".weui_dialog_bd").html(msg);
-        weui_alert.find('.weui_btn_dialog').off("click").on('click',
-            function () {
-                weui_alert.hide();
-                if (callback) {
-                    callback();
-                }
-            });
-    }
-}
 
-function wxAlert(msg, callback) {
-    weui['alert'](msg, "", callback);
-}
 
 //是否是新版的微信
 function isWxNewVersion() {
@@ -229,18 +231,6 @@ function isWxNewVersion() {
     }
     console.log(wechatInfo[1]);
     return wechatInfo.length > 1 && wechatInfo[1] == "6.3.23";
-}
-
-
-$(function () {
-    $('.firstcontainer').width($('.box-hcenter').eq(0).width());
-});
-
-function display() {
-    for (var i = 0; i < 7; i++) {
-        var temp = Math.random() * 33 + 3;
-        $(".showmoneyplace").eq(i).html('+' + temp.toFixed(2) + '元');
-    }
 }
 
 
@@ -421,7 +411,7 @@ function getNewShareUrl() {
 
 var currentShareObject = {
     title: "邀请你加入同城抽奖活动",
-    desc: "我邀请你加入同城抽奖活动，礼品免费领",
+    desc: "活动礼品免费领",
     imgUrl: "http://ww2.sinaimg.cn/mw690/006xLWk3gw1f6k0rfk2ynj30b40b4myu.jpg"
 };
 

