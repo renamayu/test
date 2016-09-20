@@ -479,6 +479,7 @@ $(document).ready(function(){
         if (one == two) {
             if (share) {
                 playnum = storeWithExpiration.getNum('share');
+                alert(playnum);
             } else {
                 playnum = 0;
             }
@@ -591,7 +592,7 @@ function shareCallback(res) {
         if (errMsg.indexOf(":confirm") != -1 || errMsg.indexOf(":ok") != -1) {
             shareComplete();
             storeWithExpiration.set('share', one, 7200, 1);
-            //alert("errMsg");
+            alert(storeWithExpiration.get('share'));
         } else {
 
         }
