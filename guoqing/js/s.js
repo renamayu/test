@@ -262,8 +262,9 @@ function setHandleMessageHookForWeixin() {
 
                         if (eventMsg) {
                             window.WeixinJSBridge.invoke(eventMsg, data, shareCallback);
-                            alert("cgggggg");
+                            
                             restoreHandleMessageHookForWeixin();
+                            alert("cgggggg11111");
                         }
                     }
                 } catch (e) {
