@@ -473,7 +473,7 @@ $(document).ready(function(){
     // alert(storeWithExpiration.get('tel'));
     var one = storeWithExpiration.get('tel');
     var two = storeWithExpiration.get('phone');
-    var share = storeWithExpiration.get('share');    
+     
     // alert(one+'----'+two);
         console.log(one);
         console.log(two);
@@ -541,13 +541,14 @@ $(document).ready(function(){
 
 
         $('.pointer').click(function (){
+            var share = storeWithExpiration.get('share');   
             if (share) {
                 playnum = storeWithExpiration.getNum('share');
                 //alert(playnum);
             }
             
             if(playnum <= 0) { //当抽奖次数为0的时候执行
-                    alert("没有次数了,可通过分享链接获取抽奖次数");
+                    alert("没有次数了,可通过分享链接获取抽奖次数");alert(share);
                     $('.playnum').html(0);
                     return false;
                 } else { //还有次数就执行
