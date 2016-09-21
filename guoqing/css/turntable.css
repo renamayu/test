@@ -425,110 +425,110 @@ html, body, .index-page, .in-main{
 .banner .turnplate img.pointer{position: absolute;width: 31.5%;height: 42.5%;left: 34.6%;top: 23%;}
 
 
-.weui_mask {
-    background: rgba(0, 0, 0, .6)
-}
+// .weui_mask {
+//     background: rgba(0, 0, 0, .6)
+// }
 
-.weui_mask, .weui_mask_transition, .weui_mask_transparent {
-    position: fixed;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0
-}
+// .weui_mask, .weui_mask_transition, .weui_mask_transparent {
+//     position: fixed;
+//     z-index: 1;
+//     width: 100%;
+//     height: 100%;
+//     top: 0;
+//     left: 0
+// }
 
-.weui_dialog_confirm .weui_dialog .weui_dialog_hd {
-    padding: 1.2em 20px .5em
-}
+// .weui_dialog_confirm .weui_dialog .weui_dialog_hd {
+//     padding: 1.2em 20px .5em
+// }
 
-.weui_dialog_confirm .weui_dialog .weui_dialog_bd {
-    text-align: left;
-}
+// .weui_dialog_confirm .weui_dialog .weui_dialog_bd {
+//     text-align: left;
+// }
 
-.weui_dialog_hd {
-    padding: 0.9em 0 .5em
-}
+// .weui_dialog_hd {
+//     padding: 0.9em 0 .5em
+// }
 
-.weui_dialog_title {
-    font-weight: 200;
-    font-size: 20px
-}
+// .weui_dialog_title {
+//     font-weight: 200;
+//     font-size: 20px
+// }
 
-.weui_dialog_bd {
-    padding: 0 13px;
-    font-size: 19px;
-    color: #888
-}
+// .weui_dialog_bd {
+//     padding: 0 13px;
+//     font-size: 19px;
+//     color: #888
+// }
 
-.weui_dialog_ft {
-    position: relative;
-    line-height: 30px;
-    margin-top: 15px;
-    font-size: 20px;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex
-}
+// .weui_dialog_ft {
+//     position: relative;
+//     line-height: 30px;
+//     margin-top: 15px;
+//     font-size: 20px;
+//     display: -webkit-box;
+//     display: -webkit-flex;
+//     display: -ms-flexbox;
+//     display: flex
+// }
 
-.weui_dialog_ft a {
-    display: block;
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-    color: #3cc51f;
-    text-decoration: none;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
-}
+// .weui_dialog_ft a {
+//     display: block;
+//     -webkit-box-flex: 1;
+//     -webkit-flex: 1;
+//     -ms-flex: 1;
+//     flex: 1;
+//     color: #3cc51f;
+//     text-decoration: none;
+//     -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+// }
 
-.weui_dialog_ft a:active {
-    background-color: #eee
-}
+// .weui_dialog_ft a:active {
+//     background-color: #eee
+// }
 
-.weui_dialog_ft:after {
-    content: " ";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 1px;
-    border-top: 1px solid #d5d5d6;
-    color: #d5d5d6;
-    -webkit-transform-origin: 0 0;
-    transform-origin: 0 0;
-    -webkit-transform: scaleY(.5);
-    transform: scaleY(.5)
-}
+// .weui_dialog_ft:after {
+//     content: " ";
+//     position: absolute;
+//     left: 0;
+//     top: 0;
+//     width: 100%;
+//     height: 1px;
+//     border-top: 1px solid #d5d5d6;
+//     color: #d5d5d6;
+//     -webkit-transform-origin: 0 0;
+//     transform-origin: 0 0;
+//     -webkit-transform: scaleY(.5);
+//     transform: scaleY(.5)
+// }
 
-.weui_dialog_confirm .weui_dialog_ft a {
-    position: relative
-}
+// .weui_dialog_confirm .weui_dialog_ft a {
+//     position: relative
+// }
 
-.weui_dialog_confirm .weui_dialog_ft a:after {
-    content: " ";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 1px;
-    height: 100%;
-    border-left: 1px solid #d5d5d6;
-    color: #d5d5d6;
-    -webkit-transform-origin: 0 0;
-    transform-origin: 0 0;
-    -webkit-transform: scaleX(.5);
-    transform: scaleX(.5)
-}
+// .weui_dialog_confirm .weui_dialog_ft a:after {
+//     content: " ";
+//     position: absolute;
+//     left: 0;
+//     top: 0;
+//     width: 1px;
+//     height: 100%;
+//     border-left: 1px solid #d5d5d6;
+//     color: #d5d5d6;
+//     -webkit-transform-origin: 0 0;
+//     transform-origin: 0 0;
+//     -webkit-transform: scaleX(.5);
+//     transform: scaleX(.5)
+// }
 
-.weui_dialog_confirm .weui_dialog_ft a:first-child:after {
-    display: none
-}
+// .weui_dialog_confirm .weui_dialog_ft a:first-child:after {
+//     display: none
+// }
 
-.weui_btn_dialog.default {
-    color: #353535
-}
+// .weui_btn_dialog.default {
+//     color: #353535
+// }
 
-.weui_btn_dialog.primary {
-    color: #fb4b06
-}
+// .weui_btn_dialog.primary {
+//     color: #fb4b06
+// }
