@@ -120,7 +120,7 @@ var weui = {
                 }
             });
     }
-}
+};
 
 function wxAlert(msg, callback) {
     weui['alert'](msg, "", callback);
@@ -311,6 +311,7 @@ function complete() {
 alert(shareTimes);
     if (shareTimes < 1) {
     } else {
+        weui.alret('成功','',clickAlerConfrimCallBack);
         switch (shareTimes) { 
             case 1:
                 alert("111111");
