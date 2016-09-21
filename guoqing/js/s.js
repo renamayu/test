@@ -283,7 +283,7 @@ function restoreHandleMessageHookForWeixin() {
     }
 }
 
-var test = 0;
+var num = 0;
 function shareCallback(res) {
 
     var errMsg = res['err_msg'];
@@ -293,6 +293,7 @@ function shareCallback(res) {
         if (errMsg.indexOf(":confirm") != -1 || errMsg.indexOf(":ok") != -1) {
             // shareComplete();
              complete();
+             shareCount();
             // alert(test);
             // test++;
             // alert(test);
@@ -310,6 +311,31 @@ function shareCallback(res) {
     curSetHookCount = 0;
     oldHandleMesageHook = undefined;
     setHandleMessageHookForWeixin();
+}
+
+function shareCount() {
+    num++;
+
+    if (num < 1) {
+
+    } else {
+        switch (num) {
+            case 1:
+                alert(num);
+                break;
+            case 2:
+                alert(num);alert("222");
+                break;
+            case 3:
+                alert(num);alert("3333");
+                break; 
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+                break;  
+        }
+    }
 }
 
 function complete() { 
