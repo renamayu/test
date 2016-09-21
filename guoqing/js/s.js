@@ -382,14 +382,15 @@ function shareComplete() {
                 break;
             case 3:
                 //alert(shareTimes);alert("333333");
-                if (isNeedReloadShare) {
-                    isNeedReloadShare = false;
-                    shareTimes = 0;
-                    alert("出现未知错误,分享失败,请重新分享");
-                    //wxAlert('出现未知错误,分享失败,请重新分享',clickAlerConfrimCallBack);
-                    return;
-                }
+                // if (isNeedReloadShare) {
+                //     isNeedReloadShare = false;
+                //     shareTimes = 0;
+                //     alert("出现未知错误,分享失败,请重新分享");
+                //     //wxAlert('出现未知错误,分享失败,请重新分享',clickAlerConfrimCallBack);
+                //     return;
+                // }
                 storeWithExpiration.set('share', 13000000000, 7200, 1);
+                alert(storeWithExpiration.get('share'));
                 //setTimeout(goToShareNexUrlnew, 2000);
                 break;
             case 5:
