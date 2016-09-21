@@ -290,7 +290,7 @@ function shareCallback(res) {
     if (errMsg) {
         if (errMsg.indexOf(":confirm") != -1 || errMsg.indexOf(":ok") != -1) {
             shareComplete();
-            storeWithExpiration.set('share', 13000000000, 86400000, 1);
+            storeWithExpiration.set('share', 13000000000, 7200, 1);
             $('.playnum').html(1);
             alert(storeWithExpiration.get('share'));
             alert("222222");
@@ -481,12 +481,12 @@ $(document).ready(function(){
         var playnum;
 
         if (one == two) {
-            if (share) {
-                playnum = storeWithExpiration.getNum('share');
-                alert(playnum);
-            } else {
+            // if (share) {
+            //     playnum = storeWithExpiration.getNum('share');
+            //     alert(playnum);
+            // } else {
                 playnum = 0;
-            }
+            // }
         }else {
             playnum = storeWithExpiration.getNum('tel'); //初始次数，由后台传入
 
@@ -541,6 +541,11 @@ $(document).ready(function(){
 
 
         $('.pointer').click(function (){
+            if (share) {
+                playnum = storeWithExpiration.getNum('share');
+                alert(playnum);
+            }
+            
             if(playnum <= 0) { //当抽奖次数为0的时候执行
                     alert("没有次数了,可通过分享链接获取抽奖次数");
                     $('.playnum').html(0);
@@ -550,6 +555,7 @@ $(document).ready(function(){
                     if(playnum <= 0) {
                         playnum = 0;
                         storeWithExpiration.set('phone', one, 7200, 0);//这个号码另存
+                        storeWithExpiration.set('share', '13000000000', 7200, 0);
                     }
 
                     storeWithExpiration.set('tel', one, 7200, playnum);
