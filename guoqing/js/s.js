@@ -310,8 +310,8 @@ function complete() {
     shareTimes++;
 alert(shareTimes);
     if (shareTimes < 1) {
-    } else {
-        switch (shareTimes) { alert("111111");alert(shareTimes);
+    } else {alert("111111");alert(shareTimes);
+        switch (shareTimes) { 
             case 1:
                 wxAlert('发送成功,请再发送2个不同的微信群即可領取！', clickAlerConfrimCallBack);
                 break;
