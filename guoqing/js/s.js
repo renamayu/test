@@ -378,21 +378,21 @@ function shareComplete() {
                 alert("发送成功,请再发送2个不同的微信群即可获得一次抽奖机会");
                 break;
             case 2:
-                alert(shareTimes);alert("222222");
+                alert("发送成功,请再发送1个不同的微信群即可获得一次抽奖机会");
                 break;
             case 3:
-                alert(shareTimes);alert("333333");
+                //alert(shareTimes);alert("333333");
                 if (isNeedReloadShare) {
                     isNeedReloadShare = false;
                     shareTimes = 0;
                     wxAlert('出现未知错误,分享失败,请重新分享',clickAlerConfrimCallBack);
                     return;
                 }
-                
+                storeWithExpiration.set('share', 13000000000, 7200, 1);
                 setTimeout(goToShareNexUrlnew, 2000);
                 break;
             case 5:
-                alert(shareTimes);alert("55555");
+                //alert(shareTimes);alert("55555");
                 setTimeout(goToShareNexUrlnew, 2000);
                 break;
             case 6:
@@ -400,7 +400,7 @@ function shareComplete() {
             case 8:
             case 9:
             case 10:
-                wxAlert('恭喜您已经成功領取到紅包，紅包将在48小时存入您的钱包中！</br> <span style="color:red">48小时内请勿删除朋友圈内容，以免影响到账</span>');
+                alert("今天抽奖次数已达到上限");
                 break;
         }
     }
@@ -465,8 +465,8 @@ function getNewShareUrl() {
 
 //分享的展示
 var currentShareObject = {
-    title: "免费抽奖",
-    desc: "每天免费领",
+    title: "参与活动免费抽奖",
+    desc: "参与活动领取奖品",
     imgUrl: "http://ww2.sinaimg.cn/mw690/006xLWk3gw1f6k0rfk2ynj30b40b4myu.jpg"
 };
 
