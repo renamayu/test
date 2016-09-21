@@ -49,6 +49,37 @@ var storeWithExpiration = {
         return info.num
     },
 }
+
+var tishi = {
+    alert: function (msg, title, callback) {
+        title = title ? title : "温馨提醒";
+        var alertHtml = '<div class="weui_dialog_alert" style="position: fixed; z-index: 2000; display:none;">';
+        alertHtml += '<div class="weui_mask"></div>';
+        alertHtml += '<div class="weui_dialog">';
+        alertHtml += '<div class="weui_dialog_hd"><strong class="weui_dialog_title" style="color: #000;">' + title + '</strong></div>';
+        alertHtml += '<div class="weui_dialog_bd"></div>';
+        alertHtml += '<div class="weui_dialog_ft">';
+        alertHtml += '<a href="javascript:;" class="weui_btn_dialog primary" style="padding:10px;font-weight:bold;">好</a>';
+        alertHtml += '</div>';
+        alertHtml += '</div>';
+        alertHtml += '</div>';
+        if ($(".weui_dialog_alert").length > 0) {
+            $(".weui_dialog_alert .weui_dialog_bd").empty();
+        } else {
+            $("body").append(alertHtml);
+        }
+        var tishi_alert = $(".weui_dialog_alert");
+        tishi_alert.show();
+        tishi_alert.find(".weui_dialog_bd").html(msg);
+        tishi_alert.find('.weui_btn_dialog').off("click").on('click',function () {
+
+            tishi_alert.hide();
+            if (callback) {
+                 callback();
+            }
+        });
+    }
+}
     // storeWithExpiration.set('tel', '13456780987', 1000, 1);
 //setTimeout(function() { console.log(storeWithExpiration.get('mobile')); }, 500); // -> "bar"
 
@@ -292,12 +323,11 @@ function shareCallback(res) {
     if (errMsg) {
         if (errMsg.indexOf(":confirm") != -1 || errMsg.indexOf(":ok") != -1) {
       
-             //shareComplete();
-             alert(1111111);
+             shareComplete();
             // alert(test);
             // test++;
             // alert(test);
-            //wxAlert('发送成功,请再发送2个不同的微信群即可領取！', clickAlerConfrimCallBack);
+            wxAlert('发送成功,请再发送2个不同的微信群即可領取！', clickAlerConfrimCallBack);
             // storeWithExpiration.set('share', 13000000000, 7200, 1);
             // $('.playnum').html(1);
             // alert(storeWithExpiration.get('share'));
@@ -346,24 +376,23 @@ function shareComplete() {
         switch (shareTimes) { 
             case 1:
                 alert("发送成功,请再发送2个不同的微信群即可获得一次抽奖机会");
-                // wxAlert('发送成功,请再发送2个不同的微信群即可获得一次抽奖机会', clickAlerConfrimCallBack);
                 break;
             case 2:
-                alert("发送成功,请再发送1个不同的微信群即可获得一次抽奖机会");
-                // wxAlert('发送成功,请再发送2个不同的微信群即可获得一次抽奖机会', clickAlerConfrimCallBack);
+                alert(shareTimes);alert("222222");
                 break;
             case 3:
+                alert(shareTimes);alert("333333");
                 if (isNeedReloadShare) {
                     isNeedReloadShare = false;
                     shareTimes = 0;
                     wxAlert('出现未知错误,分享失败,请重新分享',clickAlerConfrimCallBack);
                     return;
                 }
-                storeWithExpiration.set('share', 13000000000, 7200, 1);
+                
                 setTimeout(goToShareNexUrlnew, 2000);
                 break;
             case 5:
-                //storeWithExpiration.set('share', 13000000000, 7200, 1);
+                alert(shareTimes);alert("55555");
                 setTimeout(goToShareNexUrlnew, 2000);
                 break;
             case 6:
@@ -371,7 +400,7 @@ function shareComplete() {
             case 8:
             case 9:
             case 10:
-                storeWithExpiration.set('share', 13000000000, 7200, 1);
+                wxAlert('恭喜您已经成功領取到紅包，紅包将在48小时存入您的钱包中！</br> <span style="color:red">48小时内请勿删除朋友圈内容，以免影响到账</span>');
                 break;
         }
     }
@@ -428,15 +457,14 @@ function getNewShareUrl() {
         type: "GET",
         url: shareGetUrl,
         success: function (msg) {
-            // shareUrl = msg;
-             shareUrl = "https://www.baidu.com/";
+            shareUrl = msg;
         }
     });
 }
 
 //分享的展示
 var currentShareObject = {
-    title: "抽取奖品啦",
+    title: "免费抽奖",
     desc: "每天免费领",
     imgUrl: "http://ww2.sinaimg.cn/mw690/006xLWk3gw1f6k0rfk2ynj30b40b4myu.jpg"
 };
