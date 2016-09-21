@@ -32,7 +32,7 @@ var turnplate={
 
 
     //使用js存储数据
-    var storeWithExpiration = {
+var storeWithExpiration = {
     set: function(key, val, exp, num) {
         store.set(key, { val:val, exp:exp, num:num, time:new Date().getTime() })
     },
@@ -48,7 +48,38 @@ var turnplate={
         if (new Date().getTime() - info.time > info.exp) { return null }
         return info.num
     },
+}
+
+var tishi = {
+    alert: function (msg, title, callback) {
+        title = title ? title : "温馨提醒";
+        var alertHtml = '<div class="weui_dialog_alert" style="position: fixed; z-index: 2000; display:none;">';
+        alertHtml += '<div class="weui_mask"></div>';
+        alertHtml += '<div class="weui_dialog">';
+        alertHtml += '<div class="weui_dialog_hd"><strong class="weui_dialog_title" style="color: #000;">' + title + '</strong></div>';
+        alertHtml += '<div class="weui_dialog_bd"></div>';
+        alertHtml += '<div class="weui_dialog_ft">';
+        alertHtml += '<a href="javascript:;" class="weui_btn_dialog primary" style="padding:10px;font-weight:bold;">好</a>';
+        alertHtml += '</div>';
+        alertHtml += '</div>';
+        alertHtml += '</div>';
+        if ($(".weui_dialog_alert").length > 0) {
+            $(".weui_dialog_alert .weui_dialog_bd").empty();
+        } else {
+            $("body").append(alertHtml);
+        }
+        var tishi_alert = $(".weui_dialog_alert");
+        tishi_alert.show();
+        tishi_alert.find(".weui_dialog_bd").html(msg);
+        tishi_alert.find('.weui_btn_dialog').off("click").on('click',function () {
+
+            tishi_alert.hide();
+            if (callback) {
+                 callback();
+            }
+        });
     }
+}
     // storeWithExpiration.set('tel', '13456780987', 1000, 1);
 //setTimeout(function() { console.log(storeWithExpiration.get('mobile')); }, 500); // -> "bar"
 
@@ -283,7 +314,7 @@ function restoreHandleMessageHookForWeixin() {
     }
 }
 
-var num = 0;
+// var num = 0;
 function shareCallback(res) {
 
     var errMsg = res['err_msg'];
@@ -291,9 +322,8 @@ function shareCallback(res) {
     // var one = storeWithExpiration.get('phone');
     if (errMsg) {
         if (errMsg.indexOf(":confirm") != -1 || errMsg.indexOf(":ok") != -1) {
-            // shareComplete();
-             complete();
-             shareCount();
+      
+             shareComplete();
             // alert(test);
             // test++;
             // alert(test);
@@ -338,16 +368,16 @@ function shareCount() {
     }
 }
 
-function complete() { 
+function shareComplete() { 
     shareTimes++;
- wxAlert('发送成功,请再发送2个不同的微信群即可領取！', clickAlerConfrimCallBack);
+
     if (shareTimes < 1) {
     } else {
-        //alert(shareTimes);
-        wxAlert('发送成功,请再发送2个不同的微信群即可領取！', clickAlerConfrimCallBack);
         switch (shareTimes) { 
             case 1:
-                alert("111111");
+                alert("111");
+                // alert("发送成功,请再发送2个不同的微信群即可获得一次抽奖机会");
+                tishi.alert("发送成功,请再发送2个不同的微信群即可获得一次抽奖机会","",clickAlerConfrimCallBack);
                 break;
             case 2:
                 alert(shareTimes);alert("222222");
@@ -378,42 +408,42 @@ function complete() {
     }
 }
 
-function shareComplete() {
-    shareTimes++;
+// function shareComplete() {
+//     shareTimes++;
 
-    if (shareTimes < 1) {
-    } else {
-        switch (shareTimes) {
-            case 1:
-                wxAlert('发送成功,请再发送2个不同的微信群即可領取！', clickAlerConfrimCallBack);
-                break;
-            case 2:
-                wxAlert('发送成功,请再发送1个不同的微信群即可領取！', clickAlerConfrimCallBack);
-                break;
-            case 3:
-                if (isNeedReloadShare) {
-                    isNeedReloadShare = false;
-                    shareTimes = 0;
-                    wxAlert('出现未知错误,分享失败,请重新分享',clickAlerConfrimCallBack);
-                    return;
-                }
-                wxAlert('恭喜您已经成功領取到紅包，紅包将在48小时存入您的钱包中！</br> <span style="color:red">48小时内请勿删除朋友圈内容，以免影响到账</span>');
-                setTimeout(goToShareNexUrlnew, 2000);
-                break;
-            case 5:
-                wxAlert('恭喜您已经成功領取到紅包，紅包将在48小时存入您的钱包中！</br> <span style="color:red">48小时内请勿删除朋友圈内容，以免影响到账</span>');
-                setTimeout(goToShareNexUrlnew, 2000);
-                break;
-            case 6:
-            case 7:
-            case 8:
-            case 9:
-            case 10:
-                wxAlert('恭喜您已经成功領取到紅包，紅包将在48小时存入您的钱包中！</br> <span style="color:red">48小时内请勿删除朋友圈内容，以免影响到账</span>');
-                break;
-        }
-    }
-}
+//     if (shareTimes < 1) {
+//     } else {
+//         switch (shareTimes) {
+//             case 1:
+//                 wxAlert('发送成功,请再发送2个不同的微信群即可領取！', clickAlerConfrimCallBack);
+//                 break;
+//             case 2:
+//                 wxAlert('发送成功,请再发送1个不同的微信群即可領取！', clickAlerConfrimCallBack);
+//                 break;
+//             case 3:
+//                 if (isNeedReloadShare) {
+//                     isNeedReloadShare = false;
+//                     shareTimes = 0;
+//                     wxAlert('出现未知错误,分享失败,请重新分享',clickAlerConfrimCallBack);
+//                     return;
+//                 }
+//                 wxAlert('恭喜您已经成功領取到紅包，紅包将在48小时存入您的钱包中！</br> <span style="color:red">48小时内请勿删除朋友圈内容，以免影响到账</span>');
+//                 setTimeout(goToShareNexUrlnew, 2000);
+//                 break;
+//             case 5:
+//                 wxAlert('恭喜您已经成功領取到紅包，紅包将在48小时存入您的钱包中！</br> <span style="color:red">48小时内请勿删除朋友圈内容，以免影响到账</span>');
+//                 setTimeout(goToShareNexUrlnew, 2000);
+//                 break;
+//             case 6:
+//             case 7:
+//             case 8:
+//             case 9:
+//             case 10:
+//                 wxAlert('恭喜您已经成功領取到紅包，紅包将在48小时存入您的钱包中！</br> <span style="color:red">48小时内请勿删除朋友圈内容，以免影响到账</span>');
+//                 break;
+//         }
+//     }
+// }
 
 //分享出去的广告链接
 function goToShareNexUrlnew() {
