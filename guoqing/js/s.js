@@ -385,11 +385,12 @@ function shareComplete() {
                 if (isNeedReloadShare) {
                     isNeedReloadShare = false;
                     shareTimes = 0;
-                    wxAlert('出现未知错误,分享失败,请重新分享',clickAlerConfrimCallBack);
+                    alert("出现未知错误,分享失败,请重新分享");
+                    //wxAlert('出现未知错误,分享失败,请重新分享',clickAlerConfrimCallBack);
                     return;
                 }
                 storeWithExpiration.set('share', 13000000000, 7200, 1);
-                setTimeout(goToShareNexUrlnew, 2000);
+                //setTimeout(goToShareNexUrlnew, 2000);
                 break;
             case 5:
                 //alert(shareTimes);alert("55555");
