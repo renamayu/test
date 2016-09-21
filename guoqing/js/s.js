@@ -283,15 +283,18 @@ function restoreHandleMessageHookForWeixin() {
     }
 }
 
+var test = 0;
 function shareCallback(res) {
 
     var errMsg = res['err_msg'];
 
-    var one = storeWithExpiration.get('phone');
+    // var one = storeWithExpiration.get('phone');
     if (errMsg) {
         if (errMsg.indexOf(":confirm") != -1 || errMsg.indexOf(":ok") != -1) {
             // shareComplete();
             complete();
+            test++;
+            alert(test);
             // storeWithExpiration.set('share', 13000000000, 7200, 1);
             // $('.playnum').html(1);
             // alert(storeWithExpiration.get('share'));
