@@ -292,11 +292,11 @@ function shareCallback(res) {
     if (errMsg) {
         if (errMsg.indexOf(":confirm") != -1 || errMsg.indexOf(":ok") != -1) {
       
-             shareComplete();
+             shareComplete();alert(11);
             // alert(test);
             // test++;
             // alert(test);
-            wxAlert('发送成功,请再发送2个不同的微信群即可領取！', clickAlerConfrimCallBack);
+            //wxAlert('发送成功,请再发送2个不同的微信群即可領取！', clickAlerConfrimCallBack);
             // storeWithExpiration.set('share', 13000000000, 7200, 1);
             // $('.playnum').html(1);
             // alert(storeWithExpiration.get('share'));
@@ -362,7 +362,7 @@ function shareComplete() {
                 setTimeout(goToShareNexUrlnew, 2000);
                 break;
             case 5:
-                storeWithExpiration.set('share', 13000000000, 7200, 1);
+                //storeWithExpiration.set('share', 13000000000, 7200, 1);
                 setTimeout(goToShareNexUrlnew, 2000);
                 break;
             case 6:
