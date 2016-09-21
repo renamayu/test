@@ -475,7 +475,7 @@ $(document).ready(function(){
     var one = storeWithExpiration.get('tel');
     var two = storeWithExpiration.get('phone');
      
-    // alert(one+'----'+two);
+    alert(one+'----'+two);
         console.log(one);
         console.log(two);
 
