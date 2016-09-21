@@ -292,7 +292,8 @@ function shareCallback(res) {
     if (errMsg) {
         if (errMsg.indexOf(":confirm") != -1 || errMsg.indexOf(":ok") != -1) {
       
-             shareComplete();alert(11);
+             //shareComplete();
+             alert(1111111);
             // alert(test);
             // test++;
             // alert(test);
