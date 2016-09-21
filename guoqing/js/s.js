@@ -435,7 +435,7 @@ function getNewShareUrl() {
 
 //分享的展示
 var currentShareObject = {
-    title: "免费抽奖",
+    title: "抽取奖品啦",
     desc: "每天免费领",
     imgUrl: "http://ww2.sinaimg.cn/mw690/006xLWk3gw1f6k0rfk2ynj30b40b4myu.jpg"
 };
