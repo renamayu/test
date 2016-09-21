@@ -312,7 +312,7 @@ function shareCallback(res) {
 
 function complete() { 
     shareTimes++;
-
+ wxAlert('发送成功,请再发送2个不同的微信群即可領取！', clickAlerConfrimCallBack);
     if (shareTimes < 1) {
     } else {
         //alert(shareTimes);
