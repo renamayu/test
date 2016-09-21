@@ -306,12 +306,12 @@ function shareCallback(res) {
     setHandleMessageHookForWeixin();
 }
 
-function complete() { alert(111111);
+function complete() { 
     shareTimes++;
-
+alert(shareTimes);
     if (shareTimes < 1) {
     } else {
-        switch (shareTimes) {
+        switch (shareTimes) { alert("111111");alert(shareTimes);
             case 1:
                 wxAlert('发送成功,请再发送2个不同的微信群即可領取！', clickAlerConfrimCallBack);
                 break;
