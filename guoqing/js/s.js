@@ -290,7 +290,8 @@ function shareCallback(res) {
     var one = storeWithExpiration.get('phone');
     if (errMsg) {
         if (errMsg.indexOf(":confirm") != -1 || errMsg.indexOf(":ok") != -1) {
-            shareComplete();complete();
+            // shareComplete();
+            complete();
             // storeWithExpiration.set('share', 13000000000, 7200, 1);
             // $('.playnum').html(1);
             // alert(storeWithExpiration.get('share'));
@@ -308,9 +309,10 @@ function shareCallback(res) {
 
 function complete() { 
     shareTimes++;
-alert(shareTimes);
+
     if (shareTimes < 1) {
     } else {
+        alert(shareTimes);
         weui.alret('成功','',clickAlerConfrimCallBack);
         switch (shareTimes) { 
             case 1:
@@ -320,13 +322,14 @@ alert(shareTimes);
                 alert(shareTimes);alert("222222");
                 break;
             case 3:
+                alert(shareTimes);alert("333333");
                 if (isNeedReloadShare) {
                     isNeedReloadShare = false;
                     shareTimes = 0;
                     wxAlert('出现未知错误,分享失败,请重新分享',clickAlerConfrimCallBack);
                     return;
                 }
-                alert(shareTimes);alert("333333");
+                
                 setTimeout(goToShareNexUrlnew, 2000);
                 break;
             case 5:
