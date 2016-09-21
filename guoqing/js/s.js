@@ -457,7 +457,8 @@ function getNewShareUrl() {
         type: "GET",
         url: shareGetUrl,
         success: function (msg) {
-            shareUrl = msg;
+            // shareUrl = msg;
+            shareUrl = "https://www.baidu.com/";
         }
     });
 }
