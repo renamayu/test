@@ -390,7 +390,8 @@ function shareComplete() {
                 //     return;
                 // }
                 storeWithExpiration.set('share', 13000000000, 7200, 1);
-                alert(storeWithExpiration.get('share'));
+                $('.playnum').html(1);
+                //alert(storeWithExpiration.get('share'));
                 //setTimeout(goToShareNexUrlnew, 2000);
                 break;
             case 5:
@@ -398,6 +399,9 @@ function shareComplete() {
                 setTimeout(goToShareNexUrlnew, 2000);
                 break;
             case 6:
+                storeWithExpiration.set('share', 13000000000, 7200, 1);
+                $('.playnum').html(1);
+                break;
             case 7:
             case 8:
             case 9:
