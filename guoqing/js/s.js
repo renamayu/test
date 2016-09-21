@@ -327,7 +327,7 @@ function shareCallback(res) {
             // alert(test);
             // test++;
             // alert(test);
-            wxAlert('发送成功,请再发送2个不同的微信群即可領取！', clickAlerConfrimCallBack);
+            // wxAlert('发送成功,请再发送2个不同的微信群即可領取！', clickAlerConfrimCallBack);
             // storeWithExpiration.set('share', 13000000000, 7200, 1);
             // $('.playnum').html(1);
             // alert(storeWithExpiration.get('share'));
