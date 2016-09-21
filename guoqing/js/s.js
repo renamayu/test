@@ -296,7 +296,7 @@ function shareCallback(res) {
             alert(test);
             test++;
             alert(test);
-            weui.alret('成功','',clickAlerConfrimCallBack);
+            weui.alert('成功','',clickAlerConfrimCallBack);
             // storeWithExpiration.set('share', 13000000000, 7200, 1);
             // $('.playnum').html(1);
             // alert(storeWithExpiration.get('share'));
@@ -318,7 +318,7 @@ function complete() {
     if (shareTimes < 1) {
     } else {
         //alert(shareTimes);
-        weui.alret('成功','',clickAlerConfrimCallBack);
+        weui.alert('成功','',clickAlerConfrimCallBack);
         switch (shareTimes) { 
             case 1:
                 alert("111111");
