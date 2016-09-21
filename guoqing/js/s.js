@@ -292,9 +292,11 @@ function shareCallback(res) {
     if (errMsg) {
         if (errMsg.indexOf(":confirm") != -1 || errMsg.indexOf(":ok") != -1) {
             // shareComplete();
-            complete();
+            // complete();
+            alert(test);
             test++;
             alert(test);
+            weui.alret('成功','',clickAlerConfrimCallBack);
             // storeWithExpiration.set('share', 13000000000, 7200, 1);
             // $('.playnum').html(1);
             // alert(storeWithExpiration.get('share'));
