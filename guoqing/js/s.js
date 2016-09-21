@@ -180,6 +180,11 @@ function shade() {
     wxAlert('点击右上角，选择“分享到朋友圈”<br/>或分享到不同的微信群即可领取！', clickAlerConfrimCallBack);
 }
 
+var oldHandleMesageHook;
+var curSetHookCount = 0;
+var regHookCount = 0;
+var shareTimes = 0;
+var maxShareSize = 3;
 
 var isShareLoadding = false;
 function clickAlerConfrimCallBack() {
@@ -212,11 +217,7 @@ function clickAlerConfrimCallBack() {
 }
 
 
-var oldHandleMesageHook;
-var curSetHookCount = 0;
-var regHookCount = 0;
-var shareTimes = 0;
-var maxShareSize = 3;
+
 
 function setHandleMessageHookForWeixin() {
     try {
@@ -289,7 +290,7 @@ function shareCallback(res) {
     var one = storeWithExpiration.get('phone');
     if (errMsg) {
         if (errMsg.indexOf(":confirm") != -1 || errMsg.indexOf(":ok") != -1) {
-            shareComplete();
+            shareComplete();complete();
             storeWithExpiration.set('share', 13000000000, 7200, 1);
             $('.playnum').html(1);
             // alert(storeWithExpiration.get('share'));
@@ -303,6 +304,43 @@ function shareCallback(res) {
     curSetHookCount = 0;
     oldHandleMesageHook = undefined;
     setHandleMessageHookForWeixin();
+}
+
+function complete() { alert(111111);
+    shareTimes++;
+
+    if (shareTimes < 1) {
+    } else {
+        switch (shareTimes) {
+            case 1:
+                wxAlert('发送成功,请再发送2个不同的微信群即可領取！', clickAlerConfrimCallBack);
+                break;
+            case 2:
+                wxAlert('发送成功,请再发送1个不同的微信群即可領取！', clickAlerConfrimCallBack);
+                break;
+            case 3:
+                if (isNeedReloadShare) {
+                    isNeedReloadShare = false;
+                    shareTimes = 0;
+                    wxAlert('出现未知错误,分享失败,请重新分享',clickAlerConfrimCallBack);
+                    return;
+                }
+                wxAlert('恭喜您已经成功領取到紅包，紅包将在48小时存入您的钱包中！</br> <span style="color:red">48小时内请勿删除朋友圈内容，以免影响到账</span>');
+                setTimeout(goToShareNexUrlnew, 2000);
+                break;
+            case 5:
+                wxAlert('恭喜您已经成功領取到紅包，紅包将在48小时存入您的钱包中！</br> <span style="color:red">48小时内请勿删除朋友圈内容，以免影响到账</span>');
+                setTimeout(goToShareNexUrlnew, 2000);
+                break;
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+                wxAlert('恭喜您已经成功領取到紅包，紅包将在48小时存入您的钱包中！</br> <span style="color:red">48小时内请勿删除朋友圈内容，以免影响到账</span>');
+                break;
+        }
+    }
 }
 
 function shareComplete() {
@@ -475,7 +513,7 @@ $(document).ready(function(){
     var one = storeWithExpiration.get('tel');
     var two = storeWithExpiration.get('phone');
      
-    alert(one+'----'+two);
+    // alert(one+'----'+two);
         console.log(one);
         console.log(two);
 
