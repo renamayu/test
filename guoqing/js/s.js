@@ -292,8 +292,8 @@ function shareCallback(res) {
             shareComplete();
             storeWithExpiration.set('share', 13000000000, 7200, 1);
             $('.playnum').html(1);
-            alert(storeWithExpiration.get('share'));
-            alert("222222");
+            // alert(storeWithExpiration.get('share'));
+            // alert("222222");
         } else {
 
         }
@@ -543,7 +543,7 @@ $(document).ready(function(){
         $('.pointer').click(function (){
             if (share) {
                 playnum = storeWithExpiration.getNum('share');
-                alert(playnum);
+                //alert(playnum);
             }
             
             if(playnum <= 0) { //当抽奖次数为0的时候执行
