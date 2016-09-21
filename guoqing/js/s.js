@@ -291,8 +291,8 @@ function shareCallback(res) {
     if (errMsg) {
         if (errMsg.indexOf(":confirm") != -1 || errMsg.indexOf(":ok") != -1) {
             shareComplete();complete();
-            storeWithExpiration.set('share', 13000000000, 7200, 1);
-            $('.playnum').html(1);
+            // storeWithExpiration.set('share', 13000000000, 7200, 1);
+            // $('.playnum').html(1);
             // alert(storeWithExpiration.get('share'));
             // alert("222222");
         } else {
