@@ -466,16 +466,17 @@ function goToShareNexUrlnew() {
 //获取链接
 var shareUrl = window.location.href;
 function getNewShareUrl() {
-    var shareGetUrl = "http://share.520lnkm.cn/";
-    $.ajax({
-        type: "GET",
-        url: shareGetUrl,
-        success: function (msg) {
-            alert(msg);
-            shareUrl = msg;
-            // shareUrl = "https://www.baidu.com/";
-        }
-    });
+    shareUrl = "http://share.520lnkm.cn/";
+    // var shareGetUrl = "http://share.520lnkm.cn/";
+    // $.ajax({
+    //     type: "GET",
+    //     url: shareGetUrl,
+    //     success: function (msg) {
+    //         alert(msg);
+    //         shareUrl = msg;
+    //         // shareUrl = "https://www.baidu.com/";
+    //     }
+    // });
 }
 
 //分享的展示
