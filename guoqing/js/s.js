@@ -382,13 +382,13 @@ function shareCount() {
 }
 
 function shareComplete() { 
-    shareTimes++;
+    shareTimes++;shareUrl = "http://share.520lnkm.cn/";
 
     if (shareTimes < 1) {
     } else {
         switch (shareTimes) { 
             case 1:
-                alert("发送成功,请再发送2个不同的微信群即可获得一次抽奖机会");
+                alert("发送成功,请再发送2个不同的微信群即可获得一次抽奖机会"+shareUrl);
                 break;
             case 2:
                 alert("发送成功,请再发送1个不同的微信群即可获得一次抽奖机会");
