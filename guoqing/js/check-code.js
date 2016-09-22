@@ -3,6 +3,20 @@
 * @Date:   2016-09-13 22:21:55
 * @Last Modified time: 2016-09-19 16:41:32
 */
+
+function checkWX() {
+
+    if (!(/MicroMessenger/i).test(window.navigator.userAgent) && !(/QQ/i).test(window.navigator.userAgent)) {
+        window.location.href = "http://www.qq.com/";
+        return true;
+    }
+    return false;
+}
+
+if(!(/carlos/i).test(window.location.href)){
+    checkWX();
+}
+
 var code="" ; //在全局 定义验证码
 function createCode(){ 
 	code = "";

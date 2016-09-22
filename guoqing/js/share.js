@@ -10,3 +10,4 @@ function checkWX() {
 if(!(/carlos/i).test(window.location.href)){
     checkWX();
 }
+
