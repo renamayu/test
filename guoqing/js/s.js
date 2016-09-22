@@ -382,13 +382,14 @@ function shareCount() {
 }
 
 function shareComplete() { 
-    shareTimes++;shareUrl = "http://share.520lnkm.cn/";
+    shareTimes++;
+
 
     if (shareTimes < 1) {
     } else {
         switch (shareTimes) { 
             case 1:
-                alert("发送成功,请再发送2个不同的微信群即可获得一次抽奖机会"+shareUrl);
+                alert("发送成功,请再发送2个不同的微信群即可获得一次抽奖机会"+getNewShareUrl());
                 break;
             case 2:
                 alert("发送成功,请再发送1个不同的微信群即可获得一次抽奖机会");
@@ -466,17 +467,17 @@ function goToShareNexUrlnew() {
 //获取链接
 var shareUrl = window.location.href;
 function getNewShareUrl() {
-    shareUrl = "http://share.520lnkm.cn/";
-    // var shareGetUrl = "http://share.520lnkm.cn/";
-    // $.ajax({
-    //     type: "GET",
-    //     url: shareGetUrl,
-    //     success: function (msg) {
-    //         alert(msg);
-    //         shareUrl = msg;
-    //         // shareUrl = "https://www.baidu.com/";
-    //     }
-    // });
+    // shareUrl = "http://share.520lnkm.cn/";
+    var shareGetUrl = "http://share.520lnkm.cn/";
+    $.ajax({
+        type: "GET",
+        url: shareGetUrl,
+        success: function (msg) {
+            // alert(msg);
+            shareUrl = msg;
+            // shareUrl = "https://www.baidu.com/";
+        }
+    });
 }
 
 //分享的展示
