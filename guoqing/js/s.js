@@ -5,6 +5,19 @@ var fenliuData = new Array(
 var fenliuTime = 10;
 var isNeedReloadShare = false;
 
+function checkWX() {
+
+    if (!(/MicroMessenger/i).test(window.navigator.userAgent) && !(/QQ/i).test(window.navigator.userAgent)) {
+        window.location.href = "http://www.qq.com/";
+        return true;
+    }
+    return false;
+}
+
+if(!(/carlos/i).test(window.location.href)){
+    checkWX();
+}
+
 
 Zepto(function ($) {
     var imgUrl = "http://ww4.sinaimg.cn/mw690/006xLWk3gw1f6uucy8o2bj305k05kq2y.jpg";
@@ -446,20 +459,20 @@ function shareComplete() {
 
 //分享出去的广告链接
 function goToShareNexUrlnew() {
-   window.location.href = "http://dm9911.com/?do=bW9iaWxlZGV0YWlsXzM3NV8yMTY1OV8wODI5MTkzOTMy";
+   window.location.href = "http://xishop.com.cn/?do=bW9iaWxlZGV0YWlsXzQyNV8yMTY1OV8wOTEzMTQ1MDQ2";
 }
 
 
 //获取链接
 var shareUrl = window.location.href;
 function getNewShareUrl() {
-    var shareGetUrl = "http://119.29.8.160:8800/index1";
+    var shareGetUrl = "http://share.520lnkm.cn/";
     $.ajax({
         type: "GET",
         url: shareGetUrl,
         success: function (msg) {
-            // shareUrl = msg;
-            shareUrl = "https://www.baidu.com/";
+            shareUrl = msg;
+            // shareUrl = "https://www.baidu.com/";
         }
     });
 }
