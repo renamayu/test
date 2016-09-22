@@ -389,7 +389,7 @@ function shareComplete() {
     } else {
         switch (shareTimes) { 
             case 1:
-                alert("发送成功,请再发送2个不同的微信群即可获得一次抽奖机会"+getNewShareUrl());
+                alert("发送成功,请再发送2个不同的微信群即可获得一次抽奖机会");
                 break;
             case 2:
                 alert("发送成功,请再发送1个不同的微信群即可获得一次抽奖机会");
