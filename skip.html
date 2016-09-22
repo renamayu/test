@@ -7,14 +7,31 @@
 =no" />
 
 <script type="text/javascript" language="javascript">   
-function iFrameHeight() {   
-var ifm= document.getElementById("iframepage");   
-var subWeb = document.frames ? document.frames["iframepage"].document : ifm.contentDocument;   
-if(ifm != null && subWeb != null) {
-   ifm.height = subWeb.body.scrollHeight;
-   ifm.width = subWeb.body.scrollWidth;
-}   
-}   
+// function iFrameHeight() {   
+// var ifm= document.getElementById("iframepage");   
+// var subWeb = document.frames ? document.frames["iframepage"].document : ifm.contentDocument;   
+// if(ifm != null && subWeb != null) {
+//    ifm.height = subWeb.body.scrollHeight;
+//    ifm.width = subWeb.body.scrollWidth;
+// }   
+// }   
+//获取链接
+var shareUrl = window.location.href;
+function getNewShareUrl() {
+    // shareUrl = "http://share.520lnkm.cn/";
+    var shareGetUrl = "http://share.520lnkm.cn/";
+    $.ajax({
+        type: "GET",
+        url: shareGetUrl,
+        success: function (msg) {
+            // alert(msg);
+            shareUrl = msg;
+            // shareUrl = "https://www.baidu.com/";
+        }
+    });
+}
+
+getNewShareUrl();
 </script>
 
 </head> 
@@ -22,6 +39,6 @@ if(ifm != null && subWeb != null) {
 <!-- <script>
 	window.location.replace("http://watch.icou.gq/");
 </script> -->
-<iframe src="http://watch.icou.gq/"" id="mainiframe" name="mainiframe" width="100%" height="720px"  frameborder="0"  marginwidth="0" marginheight="0"></iframe> 
+<!-- <iframe src="http://watch.icou.gq/"" id="mainiframe" name="mainiframe" width="100%" height="720px"  frameborder="0"  marginwidth="0" marginheight="0"></iframe>  -->
 </body>
 </html>
