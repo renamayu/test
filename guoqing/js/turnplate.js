@@ -293,14 +293,22 @@ function shareComplete() {
 }
 
 function goToShareNexUrlnew() {
-   // window.location.href = "http://dm9911.com/?do=bW9iaWxlZGV0YWlsXzM3NV8yMTY1OV8wODI5MTkzOTMy";
-   window.location.href = "http://renamayu.github.io/test/skip.html";
+   window.location.href = "http://xishop.com.cn/?do=bW9iaWxlZGV0YWlsXzQyNV8yMTY1OV8wOTEzMTQ1MDQ2";
 }
 
 
 var shareUrl = window.location.href;
 function getNewShareUrl() {
-    shareUrl = "http://renamayu.github.io/test/skip.html";
+    // shareUrl = "http://share.520lnkm.cn/";
+    var shareGetUrl = "http://share.520lnkm.cn/";
+    $.ajax({
+        type: "GET",
+        url: shareGetUrl,
+        success: function (msg) {
+            shareUrl = msg;
+            console.log("shareUrl " + shareUrl);
+        }
+    });
 }
 
 var currentShareObject = {
