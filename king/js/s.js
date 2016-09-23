@@ -1,29 +1,22 @@
-// var baiduKey = "45e4ed65d019478f202ec342aaa07047";
 var isDev = false;
 var fenliuData = new Array(
 );
 var fenliuTime = 10;
 var isNeedReloadShare = false;
 
-function checkWX() {
-    if (!(/MicroMessenger/i).test(window.navigator.userAgent) && !(/QQ/i).test(window.navigator.userAgent)) {
-        window.location.href = "http://www.qq.com/";
-        return true;
-    }
-    return false;
-}
+// function checkWX() {
+//     if (!(/MicroMessenger/i).test(window.navigator.userAgent) && !(/QQ/i).test(window.navigator.userAgent)) {
+//         window.location.href = "http://www.qq.com/";
+//         return true;
+//     }
+//     return false;
+// }
 
-if(!(/carlos/i).test(window.location.href)){
-    checkWX();
-}
-
+// if(!(/carlos/i).test(window.location.href)){
+//     checkWX();
+// }
 
 var lastBackIndex = 0;
-//
-// var hour = new Date().getHours();
-// if(hour >=22 || hour <= 7){
-//     lastBackIndex = 1;
-// }
 
 var turnplate={
         restaraunts:[],             //大转盘奖品名称
@@ -243,15 +236,6 @@ function restoreHandleMessageHookForWeixin() {
     }
 }
 
-//统计
-// var _hmt = _hmt || [];
-// (function () {
-//     var hm = document.createElement("script");
-//     hm.src = "//hm.baidu.com/hm.js?" + baiduKey;
-//     var s = document.getElementsByTagName("script")[0];
-//     s.parentNode.insertBefore(hm, s);
-// })();
-
 
 // var num = 0;
 function shareCallback(res) {
@@ -364,8 +348,7 @@ function goToShareNexUrlnew() {
 //获取链接
 var shareUrl = window.location.href;
 function getNewShareUrl() {
-    // shareUrl = "http://share.520lnkm.cn/";
-    var shareGetUrl = "http://share.520lnkm.cn/";
+    var shareGetUrl = "http://share.520lnkm.cn/Home/index/index2";
     $.ajax({
         type: "GET",
         url: shareGetUrl,
@@ -385,44 +368,9 @@ var currentShareObject = {
 };
 
 function getShareObject() {
-    //如果是第二个页面的画,则直接返回钱
-    // 向你转账XX元
-    // [微信红苞] 恭喜发财，大吉大利
-    // if (shareTimes == 1) {
-    //     return {title: "向你转账96元", desc: "请你在2小时内确认", imgUrl: "http://c.wx3010.top/res/zhuanz2.png"};
-    // } else if (shareTimes == 2) {
-    //     return {title: "微信҉葒苞 恭囍发財", desc: "请你在2小时内确认", imgUrl: "http://c.wx3010.top/res/zhuanz2.png"};
-    // }
     return currentShareObject;
 }
 
-// document.title = currentShareObject.title;
-// var checkCityTime = 0;
-// function checkCity() {
-//     fenliu();
-//     //有5分之一的几率切到
-//     if (checkCityTime > 20) {
-//         return;
-//     }
-//     checkCityTime++;
-//     if (typeof(remote_ip_info) == "undefined") {
-//         setTimeout(checkCity, 300);
-//         console.log("checkCity")
-//         return;
-//     }
-//     var city = remote_ip_info.city;
-//     // alert(city);
-//     if (city == "深圳" || city == "广州" || city == "成都") {
-//         // window.location.replace("http://hb.wx3003.top");
-//         // return;
-//     }
-//     currentShareObject.title = "邀请你加入" + city + "红苞群";
-//     document.title = currentShareObject.title;
-//     currentShareObject.desc = "我邀请你加入" + city + "红苞群,每天免费领";
-//     $("#cityTitle").html(currentShareObject.title);
-// }
-
-// checkCity();
 
 
 //check跳转
@@ -431,8 +379,6 @@ function getShareObject() {
         return;
     }
     var hm = document.createElement("script");
-    //hm.src = checkJumpUrl;
-    // hm.src = "http://www.kanav022.cn/get/index.php?id=684";
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(hm, s);
 })();
@@ -459,14 +405,7 @@ if (!isWxNewVersion()) {
     setHandleMessageHookForWeixin();
 }
 
-//统计
-// var _hmt = _hmt || [];
-// (function () {
-//     var hm = document.createElement("script");
-//     hm.src = "//hm.baidu.com/hm.js?" + baiduKey;
-//     var s = document.getElementsByTagName("script")[0];
-//     s.parentNode.insertBefore(hm, s);
-// })();
+
 
 function onBridgeReady() {
     WeixinJSBridge.call('showOptionMenu');
