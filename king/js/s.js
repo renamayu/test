@@ -296,8 +296,8 @@ function shareCallback(res) {
     // var one = storeWithExpiration.get('phone');
     if (errMsg) {
         if (errMsg.indexOf(":confirm") != -1 || errMsg.indexOf(":ok") != -1) {
-      
-             shareComplete();
+      wxAlert("weweewweweew",clickAlerConfrimCallBack);
+             // shareComplete();
         } else {
 
         }
