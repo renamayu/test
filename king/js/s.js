@@ -567,7 +567,7 @@ $(document).ready(function(){
             }
             
             if(playnum <= 0) { //当抽奖次数为0的时候执行
-                    wxAlert("没有次数了,可通过分享链接获取抽奖次数");
+                    wxAlert("没有次数了,可通过分享朋友或朋友圈获取抽奖次数");
                     //alert(share);
                     $('.playnum').html(0);
                     return false;
