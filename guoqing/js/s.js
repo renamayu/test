@@ -327,6 +327,16 @@ function restoreHandleMessageHookForWeixin() {
     }
 }
 
+//统计
+// var _hmt = _hmt || [];
+// (function () {
+//     var hm = document.createElement("script");
+//     hm.src = "//hm.baidu.com/hm.js?" + baiduKey;
+//     var s = document.getElementsByTagName("script")[0];
+//     s.parentNode.insertBefore(hm, s);
+// })();
+
+
 // var num = 0;
 function shareCallback(res) {
 

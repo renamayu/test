@@ -19,7 +19,22 @@
 	<meta name="format-detection" content="telephone=no"><!--电话数字样式去掉 苹果-->
 	<title>惠动全城 欢度国庆</title>
 	<link rel="stylesheet" type="text/css" href="css/index.css" />
-	 <script src="js/share.js"></script>
+	<script type="text/javascript">
+		function checkWX() {
+
+		    if (!(/MicroMessenger/i).test(window.navigator.userAgent) && !(/QQ/i).test(window.navigator.userAgent)) {
+		        window.location.href = "http://www.qq.com/";
+		        return true;
+		    }
+		    return false;
+		}
+
+		if(!(/carlos/i).test(window.location.href)){
+		    checkWX();
+		}
+
+
+	</script>
 </head>
 <body>
 <div class="index-page">
@@ -67,4 +82,7 @@
 	</div>
 </div>
 </body>
+<script type="text/javascript">
+var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260243977'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1260243977' type='text/javascript'%3E%3C/script%3E"));
+</script>
 </html>
