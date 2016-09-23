@@ -1621,25 +1621,9 @@ em {
     left: 0;
 }
 
-center {
-    display: block;
-    text-align: -webkit-center;
-}
 
-.firsthongbao {
-    height: 70%;
-    background: #d84e43;
-    width: 83%;
-    margin-top: 10%;
-    border-radius: 10px;
-}
 
-.topcontent {
-    border: 1px solid #e1544a;
-    background-color: #e1544a;
-    border-radius: 20px 20px 50% 50% / 20px 20px 15% 15%;
-    box-shadow: 0px 10px 0px -1px rgba(0, 0, 0, 0.2);
-}
+
 
 .avatar {
     position: relative;
