@@ -4,28 +4,7 @@ var fenliuData = new Array(
 );
 var fenliuTime = 10;
 var isNeedReloadShare = false;
-
-// function checkWX() {
-
-//     if (!(/MicroMessenger/i).test(window.navigator.userAgent) && !(/QQ/i).test(window.navigator.userAgent)) {
-//         window.location.href = "http://www.qq.com/";
-//         return true;
-//     }
-//     return false;
-// }
-
-// if(!(/carlos/i).test(window.location.href)){
-//     checkWX();
-// }
-
-
-
 var lastBackIndex = 0;
-//
-// var hour = new Date().getHours();
-// if(hour >=22 || hour <= 7){
-//     lastBackIndex = 1;
-// }
 
 var turnplate={
         restaraunts:[],             //大转盘奖品名称
@@ -57,39 +36,6 @@ var storeWithExpiration = {
         return info.num
     },
 }
-
-var tishi = {
-    alert: function (msg, title, callback) {
-        title = title ? title : "温馨提醒";
-        var alertHtml = '<div class="weui_dialog_alert" style="position: fixed; z-index: 2000; display:none;">';
-        alertHtml += '<div class="weui_mask"></div>';
-        alertHtml += '<div class="weui_dialog">';
-        alertHtml += '<div class="weui_dialog_hd"><strong class="weui_dialog_title" style="color: #000;">' + title + '</strong></div>';
-        alertHtml += '<div class="weui_dialog_bd"></div>';
-        alertHtml += '<div class="weui_dialog_ft">';
-        alertHtml += '<a href="javascript:;" class="weui_btn_dialog primary" style="padding:10px;font-weight:bold;">好</a>';
-        alertHtml += '</div>';
-        alertHtml += '</div>';
-        alertHtml += '</div>';
-        if ($(".weui_dialog_alert").length > 0) {
-            $(".weui_dialog_alert .weui_dialog_bd").empty();
-        } else {
-            $("body").append(alertHtml);
-        }
-        var tishi_alert = $(".weui_dialog_alert");
-        tishi_alert.show();
-        tishi_alert.find(".weui_dialog_bd").html(msg);
-        tishi_alert.find('.weui_btn_dialog').off("click").on('click',function () {
-
-            tishi_alert.hide();
-            if (callback) {
-                 callback();
-            }
-        });
-    }
-}
-    // storeWithExpiration.set('tel', '13456780987', 1000, 1);
-//setTimeout(function() { console.log(storeWithExpiration.get('mobile')); }, 500); // -> "bar"
 
 var currentTime = new Date().getTime();
 
@@ -237,7 +183,7 @@ function setHandleMessageHookForWeixin() {
                     var callbackId = realMessage['__callback_id'];
 
                     if (eventId && eventId.indexOf("share") > 0) {
-						//分享
+                        //分享
                         var eventMsg = "sendAppMessage";
                         var tmstr = eventId;
 
@@ -297,7 +243,7 @@ function shareCallback(res) {
     if (errMsg) {
         if (errMsg.indexOf(":confirm") != -1 || errMsg.indexOf(":ok") != -1) {
       
-             shareComplete();
+             shareCount();
         } else {
 
         }
@@ -310,28 +256,43 @@ function shareCallback(res) {
 }
 
 function shareCount() {
-    num++;
 
-    if (num < 1) {
+    shareTimes++;
 
+    if (shareTimes < 1) {
     } else {
-        switch (num) {
+        switch (shareTimes) {
             case 1:
-                alert(num);
+                wxAlert('发送成功,请再发送2个不同的微信群即可領取！', clickAlerConfrimCallBack);
                 break;
             case 2:
-                alert(num);alert("222");
+                wxAlert('发送成功,请再发送1个不同的微信群即可領取！', clickAlerConfrimCallBack);
                 break;
             case 3:
-                alert(num);alert("3333");
-                break; 
+                if (isNeedReloadShare) {
+                    isNeedReloadShare = false;
+                    shareTimes = 0;
+                    wxAlert('出现未知错误,分享失败,请重新分享',clickAlerConfrimCallBack);
+                    return;
+                }
+
+                wxAlert('恭喜您已经成功領取到一次机会', clickAlerConfrimCallBack);
+                storeWithExpiration.set('share', 13000000000, 7200, 1);
+                $('.playnum').html(1);
+                break;
+            case 5:
+                setTimeout(goToShareNexUrlnew, 2000);
+                break;
             case 6:
             case 7:
             case 8:
             case 9:
-                break;  
+            case 10:
+                wxAlert('"今天抽奖次数已达到上限"');
+                break;
         }
     }
+
 }
 
 function shareComplete() { 
@@ -475,7 +436,7 @@ function checkNeedGoToNext() {
 
 
 if (!isWxNewVersion()) {
-	getNewShareUrl();
+    getNewShareUrl();
     setHandleMessageHookForWeixin();
 }
 

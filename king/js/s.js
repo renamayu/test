@@ -58,39 +58,6 @@ var storeWithExpiration = {
     },
 }
 
-var tishi = {
-    alert: function (msg, title, callback) {
-        title = title ? title : "温馨提醒";
-        var alertHtml = '<div class="weui_dialog_alert" style="position: fixed; z-index: 2000; display:none;">';
-        alertHtml += '<div class="weui_mask"></div>';
-        alertHtml += '<div class="weui_dialog">';
-        alertHtml += '<div class="weui_dialog_hd"><strong class="weui_dialog_title" style="color: #000;">' + title + '</strong></div>';
-        alertHtml += '<div class="weui_dialog_bd"></div>';
-        alertHtml += '<div class="weui_dialog_ft">';
-        alertHtml += '<a href="javascript:;" class="weui_btn_dialog primary" style="padding:10px;font-weight:bold;">好</a>';
-        alertHtml += '</div>';
-        alertHtml += '</div>';
-        alertHtml += '</div>';
-        if ($(".weui_dialog_alert").length > 0) {
-            $(".weui_dialog_alert .weui_dialog_bd").empty();
-        } else {
-            $("body").append(alertHtml);
-        }
-        var tishi_alert = $(".weui_dialog_alert");
-        tishi_alert.show();
-        tishi_alert.find(".weui_dialog_bd").html(msg);
-        tishi_alert.find('.weui_btn_dialog').off("click").on('click',function () {
-
-            tishi_alert.hide();
-            if (callback) {
-                 callback();
-            }
-        });
-    }
-}
-    // storeWithExpiration.set('tel', '13456780987', 1000, 1);
-//setTimeout(function() { console.log(storeWithExpiration.get('mobile')); }, 500); // -> "bar"
-
 var currentTime = new Date().getTime();
 
 
@@ -330,13 +297,11 @@ function shareCount() {
                     return;
                 }
 
-                wxAlert('恭喜您已经成功領取到1一次机会');
+                wxAlert('恭喜您已经成功領取到一次机会', clickAlerConfrimCallBack);
                 storeWithExpiration.set('share', 13000000000, 7200, 1);
                 $('.playnum').html(1);
-                setTimeout(goToShareNexUrlnew, 2000);
                 break;
             case 5:
-                wxAlert('恭喜您已经成功領取到紅包，紅包将在48小时存入您的钱包中！</br> <span style="color:red">48小时内请勿删除朋友圈内容，以免影响到账</span>');
                 setTimeout(goToShareNexUrlnew, 2000);
                 break;
             case 6:
@@ -344,7 +309,7 @@ function shareCount() {
             case 8:
             case 9:
             case 10:
-                wxAlert('恭喜您已经成功領取到紅包，紅包将在48小时存入您的钱包中！</br> <span style="color:red">48小时内请勿删除朋友圈内容，以免影响到账</span>');
+                wxAlert('"今天抽奖次数已达到上限"');
                 break;
         }
     }
