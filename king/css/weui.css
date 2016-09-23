@@ -1249,18 +1249,6 @@ em {
     margin-left: -90px;
 }
 
-.button div {
-    padding: 0 0 40px;
-}
-
-.button .bright {
-    margin-right: .5em;
-}
-
-.button {
-    background: url(http://7xt4b9.com1.z0.glb.clouddn.com/t0161b7373fa530eebe.png) center center no-repeat;
-    background-size: auto 80px;
-}
 
 @-webkit-keyframes shake {
     0% {
