@@ -482,7 +482,7 @@ $(document).ready(function(){
                 animateTo:angles+1800,
                 duration:8000,
                 callback:function (){
-                    alert(txt);
+                    wxAlert(txt);
                     turnplate.bRotate = !turnplate.bRotate;
                     var bl = false;
                     if (txt != "谢谢参与！") {
